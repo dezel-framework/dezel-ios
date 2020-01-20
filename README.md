@@ -1,3 +1,3 @@
-# Dezel
+# Dezel iOS
 
-A description of this package.
+iOS native bridge.
