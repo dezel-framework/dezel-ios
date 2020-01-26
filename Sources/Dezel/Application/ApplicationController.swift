@@ -952,24 +952,6 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 	}
 
 	/**
-	 * @method evaluateScript
-	 * @since 0.1.0
- 	 * @hidden
-	 */
-	private func evaluateScript(_ source: String, url: String) {
-		self.context.evaluate(source, url: url)
-	}
-
-	/**
-	 * @method evaluateStyle
-	 * @since 0.1.0
- 	 * @hidden
-	 */
-	private func evaluateStyle(_ source: String, url: String) {
-		self.stylesheet.evaluate(source, url: url)
-	}
-
-	/**
 	 * @method launch
 	 * @since 0.1.0
  	 * @hidden
