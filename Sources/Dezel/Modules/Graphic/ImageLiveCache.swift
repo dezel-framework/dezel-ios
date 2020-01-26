@@ -23,6 +23,7 @@ open class ImageLiveCache {
 	//--------------------------------------------------------------------------
 
 	/**
+	 * Assigns an image to the cache.
 	 * @method set
 	 * @since 0.1.0
 	 */
@@ -31,6 +32,7 @@ open class ImageLiveCache {
 	}
 
 	/**
+	 * Returns an image from the cacne.
 	 * @method get
 	 * @since 0.1.0
 	 */
@@ -39,6 +41,7 @@ open class ImageLiveCache {
 	}
 
 	/**
+	 * Whether an image is cached.
 	 * @method has
 	 * @since 0.1.0
 	 */

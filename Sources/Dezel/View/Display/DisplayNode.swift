@@ -224,7 +224,7 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Indicates whether the width is set to fill.
+	 * Whether the width is set to fill.
 	 * @property isFillingParentWidth
 	 * @since 0.1.0
 	 */
@@ -233,7 +233,7 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Indicates whether the height is set to fill.
+	 * Whether the height is set to fill.
 	 * @property fillsParentHeight
 	 * @since 0.1.0
 	 */
@@ -242,7 +242,7 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Indicates whether the width is set to wrap.
+	 * Whether the width is set to wrap.
 	 * @property isWrappingContentWidth
 	 * @since 0.1.0
 	 */
@@ -251,7 +251,7 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Indicates whether the height is set to wrap.
+	 * Whether the height is set to wrap.
 	 * @property isWrappingContentHeight
 	 * @since 0.1.0
 	 */
@@ -381,7 +381,7 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Indicates whether the display node has a specified state.
+	 * Whether the display node has a specified state.
 	 * @method hasState
 	 * @since 0.1.0
 	 */

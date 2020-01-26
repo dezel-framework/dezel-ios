@@ -101,15 +101,6 @@ open class JavaScriptTextView: JavaScriptView, TextViewObserver {
 		}
 	}
 
-		/**
-		 * @inherited
-		 * @method didResolveSize
-		 * @since 0.1.0
-		 */
-		override open func didResolveSize(node: DisplayNode) {
-			super.didResolveSize(node: node)
-	}
-
 	/**
 	 * @inherited
 	 * @method didResolvePadding

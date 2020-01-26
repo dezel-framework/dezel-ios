@@ -25,7 +25,7 @@ public class JavaScriptProperty: NSObject {
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @property NullValue
+	 * @property Null
 	 * @since 0.1.0
 	 * @hidden
 	 */
@@ -532,7 +532,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a string.
+	 * Whether the property is equal to a string.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -541,7 +541,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a number.
+	 * Whether the property is equal to a number.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -550,7 +550,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a number.
+	 * Whether the property is equal to a number.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -559,7 +559,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a boolean.
+	 * Whether the property is equal to a boolean.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -568,7 +568,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a value.
+	 * Whether the property is equal to a value.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -577,7 +577,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a property.
+	 * Whether the property is equal to a property.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -586,7 +586,7 @@ public class JavaScriptProperty: NSObject {
 	}
 
 	/**
-	 * Indicates whether the property is equal to a property value.
+	 * Whether the property is equal to a property value.
 	 * @method equals
 	 * @since 0.1.0
 	 */

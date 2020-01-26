@@ -18,6 +18,6 @@ open class JavaScriptGraphicModule: JavaScriptModule {
 	 */
 	override open func configure(context: JavaScriptContext) {
 		context.registerClass("dezel.graphic.Bitmap", with: JavaScriptBitmap.self)
-		context.registerClass("dezel.graphic.Canvas", with: JavaScriptCanvas.self)
+		// context.registerClass("dezel.graphic.Canvas", with: JavaScriptCanvas.self)
 	}
 }

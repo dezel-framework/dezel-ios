@@ -174,7 +174,7 @@ open class JavaScriptPropertyValue {
 	}
 
 	/**
-	 * Resets the property value using a value.
+	 * Resets the property value.
 	 * @method reset
 	 * @since 0.1.0
 	 */
@@ -210,7 +210,7 @@ open class JavaScriptPropertyValue {
 	}
 
 	/**
-	 * Indicates whether the property value equals a string.
+	 * Whether the property value equals a string.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -219,7 +219,7 @@ open class JavaScriptPropertyValue {
 	}
 
 	/**
-	 * Indicates whether the property value equals a number.
+	 * Whether the property value equals a number.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -228,7 +228,7 @@ open class JavaScriptPropertyValue {
 	}
 
 	/**
-	 * Indicates whether the property value equals a number.
+	 * Whether the property value equals a number.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -237,7 +237,7 @@ open class JavaScriptPropertyValue {
 	}
 
 	/**
-	 * Indicates whether the property value equals a boolean.
+	 * Whether the property value equals a boolean.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -246,7 +246,7 @@ open class JavaScriptPropertyValue {
 	}
 
 	/**
-	 * Indicates whether the property value equals a value.
+	 * Whether the property value equals a value.
 	 * @method equals
 	 * @since 0.1.0
 	 */

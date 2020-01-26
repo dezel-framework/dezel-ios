@@ -45,13 +45,6 @@ open class JavaScriptCallback: NSObject {
 	private(set) public var arguments: Int
 
 	/**
-	 * @property result
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	private(set) internal var result: JSValueRef?
-
-	/**
 	 * @property argc
 	 * @since 0.1.0
 	 * @hidden
@@ -64,6 +57,13 @@ open class JavaScriptCallback: NSObject {
 	 * @hidden
 	 */
 	private(set) internal var argv: UnsafePointer<JSValueRef?>
+
+	/**
+	 * @property result
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	private(set) internal var result: JSValueRef?
 
 	/**
 	 * @property callbackTarget

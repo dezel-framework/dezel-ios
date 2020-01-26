@@ -146,7 +146,7 @@ public class Transform2D {
 	}
 
 	/**
-	 * Indicates whether the matrix is the identity matrix.
+	 * Whether the matrix is the identity matrix.
 	 * @method isIdentity
 	 * @since 0.1.0
 	 */

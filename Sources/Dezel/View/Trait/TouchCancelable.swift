@@ -7,6 +7,7 @@ import UIKit
 public protocol TouchCancelable {
 
     /**
+	 * Cancels the touch event.
      * @method cancelTouchEvent
      * @since 0.1.0
      */

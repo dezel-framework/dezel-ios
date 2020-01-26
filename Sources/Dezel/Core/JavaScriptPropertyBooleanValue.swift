@@ -14,7 +14,7 @@ open class JavaScriptPropertyBooleanValue: JavaScriptPropertyValue {
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @property value
+	 * @property data
 	 * @since 0.1.0
 	 * @hidden
 	 */

@@ -754,7 +754,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	}
 
 	/**
-	 * Indicates whether a point is within the bounds of the view.
+	 * Whether a point is within the bounds of the view.
 	 * @method isPointInView
 	 * @since 0.1.0
 	 */
@@ -943,14 +943,6 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		}
 
 		return self
-	}
-
-	/**
-	 * @method createCanvas
-	 * @since 0.1.0
-	 */
-	open func createCanvas() -> JavaScriptCanvas? {
-		return nil // TODO FIX THIS
 	}
 
 	/**

@@ -20,7 +20,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	open weak var scrollableDelegate: ScrollableDelegate?
 
 	/**
-	 * Whether the web view is scrollable.
+	 * @inherited
 	 * @property scrollable
 	 * @since 0.1.0
 	 */
@@ -31,7 +31,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's scrollbars mode.
+	 * @inherited
 	 * @property scrollbars
 	 * @since 0.1.0
 	 */
@@ -61,7 +61,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's overscroll mode.
+	 * @inherited
 	 * @property overscroll
 	 * @since 0.1.0
 	 */
@@ -100,7 +100,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's top scroll.
+	 * @inherited
 	 * @property scrollTop
 	 * @since 0.1.0
 	 */
@@ -113,7 +113,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's left scroll.
+	 * @inherited
 	 * @property scrollLeft
 	 * @since 0.1.0
 	 */
@@ -126,7 +126,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's scroll width.
+	 * @inherited
 	 * @property scrollWidth
 	 * @since 0.1.0
 	 */
@@ -139,7 +139,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's scroll height.
+	 * @inherited
 	 * @property scrollHeight
 	 * @since 0.1.0
 	 */
@@ -152,14 +152,14 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's scroll inertia.
+	 * @inherited
 	 * @property scrollInertia
 	 * @since 0.1.0
 	 */
 	open var scrollInertia: Bool = true
 
 	/**
-	 * The web view's top content inset.
+	 * @inherited
 	 * @property contentInsetTop
 	 * @since 0.1.0
 	 */
@@ -170,7 +170,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's left content inset.
+	 * @inherited
 	 * @property contentInsetLeft
 	 * @since 0.1.0
 	 */
@@ -181,7 +181,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's right content inset.
+	 * @inherited
 	 * @property contentInsetRight
 	 * @since 0.1.0
 	 */
@@ -192,7 +192,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's bottom content inset.
+	 * @inherited
 	 * @property contentInsetBottom
 	 * @since 0.1.0
 	 */
@@ -203,7 +203,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * Whether the web view is paged.
+	 * @inherited
 	 * @property paged
 	 * @since 0.1.0
 	 */
@@ -214,7 +214,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * Whether the web view is zoomable.
+	 * @inherited
 	 * @property zoomable
 	 * @since 0.1.0
 	 */
@@ -225,7 +225,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's minimum zoom factor.
+	 * @inherited
 	 * @property minZoom
 	 * @since 0.1.0
 	 */
@@ -236,7 +236,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's maximum zoom factor.
+	 * @inherited
 	 * @property maxZoom
 	 * @since 0.1.0
 	 */
@@ -247,7 +247,7 @@ public class WebView: WKWebView, WKNavigationDelegate, UIScrollViewDelegate, Scr
 	}
 
 	/**
-	 * The web view's zoomed view.
+	 * @inherited
 	 * @property zoomedView
 	 * @since 0.1.0
 	 */

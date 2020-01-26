@@ -442,7 +442,6 @@ open class JavaScriptGlobalModule : JavaScriptModule {
 	 */
 	private func dispatchEvent(_ type: String, event: JavaScriptValue) {
 		self.listeners[type]?.forEach { value in
-			//value.call(arguments: [event])
 			value.call([event], target: nil)
 		}
 	}

@@ -102,11 +102,8 @@ open class JavaScriptTextInput: JavaScriptView, TextInputObserver {
 		)
 	}
 
-	//--------------------------------------------------------------------------
-	// MARK: Display Node Delegate
-	//--------------------------------------------------------------------------
-
 	/**
+	 * @inherited
 	 * @method measure
 	 * @since 0.1.0
 	 */
@@ -124,6 +121,7 @@ open class JavaScriptTextInput: JavaScriptView, TextInputObserver {
 	}
 
 	/**
+	 * @inherited
 	 * @method didResolvePadding
 	 * @since 0.1.0
 	 */
@@ -135,11 +133,8 @@ open class JavaScriptTextInput: JavaScriptView, TextInputObserver {
 		self.view.paddingBottom = CGFloat(self.resolvedPaddingBottom)
 	}
 
-	//--------------------------------------------------------------------------
-	// MARK: Content Text Input Observer
-	//--------------------------------------------------------------------------
-
 	/**
+	 * Called when the text input's value changes.
 	 * @method didChange
 	 * @since 0.1.0
 	 */
@@ -149,6 +144,7 @@ open class JavaScriptTextInput: JavaScriptView, TextInputObserver {
 	}
 
 	/**
+	 * Called when the text input receives focus.
 	 * @method didFocus
 	 * @since 0.1.0
 	 */
@@ -158,6 +154,7 @@ open class JavaScriptTextInput: JavaScriptView, TextInputObserver {
 	}
 
 	/**
+	 * Called when the text input loses focus.
 	 * @method didBlur
 	 * @since 0.1.0
 	 */

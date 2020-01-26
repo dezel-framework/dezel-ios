@@ -26,70 +26,6 @@ internal extension String {
 	}
 
 	/**
-	 * @property isNumeric
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	var isNumeric: Bool {
-
-		guard let char = self.first else {
-			return false
-		}
-
-		return (
-			char.isNumber ||
-			char == "+" ||
-			char == "-" ||
-			char == "."
-		)
-	}
-
-	/**
-	 * @property last2
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	var last1: String {
-		return self.suffix(1).lowercased()
-	}
-
-	/**
-	 * @property last2
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	var last2: String {
-		return self.suffix(2).lowercased()
-	}
-
-	/**
-	 * @property last3
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	var last3: String {
-		return self.suffix(3).lowercased()
-	}
-
-	/**
-	 * @method toLocale
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	func toLocale() -> Locale {
-
-		if (self == "") {
-			return Locale.current
-		}
-
-		if (locales[self] == nil) {
-			locales[self] = Locale(identifier: self)
-		}
-
-		return locales[self]!
-	}
-
-	/**
 	 * @method substring
 	 * @since 0.1.0
 	 * @hidden
@@ -165,17 +101,29 @@ internal extension String {
 				.replacingOccurrences(of: "\n ", with: "\n")
 			)
 	}
-}
 
-/**
- * @extension String
- * @since 0.1.0
- */
-public extension String {
+	/**
+	 * @method toLocale
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	func toLocale() -> Locale {
+
+		if (self == "") {
+			return Locale.current
+		}
+
+		if (locales[self] == nil) {
+			locales[self] = Locale(identifier: self)
+		}
+
+		return locales[self]!
+	}
 
 	/**
 	 * @method toNumber
 	 * @since 0.1.0
+	 * @hidden
 	 */
 	func toNumber() -> Double {
 
@@ -212,12 +160,21 @@ public extension String {
 	}
 
 	/**
-	 * @method UIColor
+	 * @method toColor
 	 * @since 0.1.0
+	 * @hidden
 	 */
 	func toColor() -> UIColor {
 		return UIColor(color: self)
 	}
+}
+
+/**
+ * @extension String
+ * @since 0.1.0
+ */
+public extension String {
+
 }
 
 /**

@@ -601,7 +601,7 @@ open class JavaScriptValue: NSObject {
 	}
 
 	/**
-	 * Returns the value of an indexed property from this value.
+	 * Returns the value of a property from this value using a symbol.
 	 * @method property
 	 * @since 0.1.0
 	 */
@@ -670,7 +670,7 @@ open class JavaScriptValue: NSObject {
 	}
 
 	/**
-	 * Indicates whether the value is equal to another value.
+	 * Whether the value is equal to another value.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -679,7 +679,7 @@ open class JavaScriptValue: NSObject {
 	}
 
 	/**
-	 * Indicates whether the value is equal to a string.
+	 * Whether the value is equal to a string.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -688,7 +688,7 @@ open class JavaScriptValue: NSObject {
 	}
 
 	/**
-	 * Indicates whether the value is equal to a number.
+	 * Whether the value is equal to a number.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -697,7 +697,7 @@ open class JavaScriptValue: NSObject {
 	}
 
 	/**
-	 * Indicates whether the value is equal to a boolean.
+	 * Whether the value is equal to a boolean.
 	 * @method equals
 	 * @since 0.1.0
 	 */
@@ -724,7 +724,7 @@ open class JavaScriptValue: NSObject {
 	}
 
 	/**
-	 * Called when the value is
+	 * Called when the value is reset.
 	 * @method didReset
 	 * @since 0.1.0
 	 */
@@ -871,38 +871,6 @@ internal extension JavaScriptValue {
 	 */
 	func toTimeInterval() -> TimeInterval {
 		return TimeInterval(self.number)
-	}
-
-	/**
-	 * @method toArrayOfString
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	func toArrayOfString() -> [String] {
-
-		var array: [String] = []
-
-		self.forEach { index, value in
-			array.append(value.string)
-		}
-
-		return array
-	}
-
-	/**
-	 * @method toArrayOfNumber
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	func toArrayOfNumber() -> [Double] {
-
-		var array: [Double] = []
-
-		self.forEach { index, value in
-			array.append(value.number)
-		}
-
-		return array
 	}
 
 	/**

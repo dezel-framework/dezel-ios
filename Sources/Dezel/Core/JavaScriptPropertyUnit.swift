@@ -2,6 +2,7 @@ import JavaScriptCore
 import DezelCoreJS
 
 /**
+ * The JavaScript property unit enumeration.
  * @enum JavaScriptPropertyUnit
  * @since 0.1.0
  */

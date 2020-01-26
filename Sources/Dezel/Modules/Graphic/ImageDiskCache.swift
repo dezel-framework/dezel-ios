@@ -23,6 +23,7 @@ open class ImageDiskCache {
 	//--------------------------------------------------------------------------
 
 	/**
+	 * Assigns an image to the cache.
 	 * @method set
 	 * @since 0.1.0
 	 */
@@ -33,6 +34,7 @@ open class ImageDiskCache {
 	}
 
 	/**
+	 * Returns an image from the cacne.
 	 * @method get
 	 * @since 0.1.0
 	 */
@@ -46,6 +48,7 @@ open class ImageDiskCache {
 	}
 
 	/**
+	 * Whether an image is cached.
 	 * @method has
 	 * @since 0.1.0
 	 */

@@ -112,7 +112,7 @@ open class View : UIScrollView, UIScrollViewDelegate, Scrollable {
 	}
 
 	/**
-	 * The view's top scroll.
+	 * The view's scroll top.
 	 * @property scrollTop
 	 * @since 0.1.0
 	 */
@@ -125,7 +125,7 @@ open class View : UIScrollView, UIScrollViewDelegate, Scrollable {
 	}
 
 	/**
-	 * The view's left scroll.
+	 * The view's scroll left.
 	 * @property scrollLeft
 	 * @since 0.1.0
 	 */

@@ -64,28 +64,28 @@ open class JavaScriptContext {
 	 * The context's handle.
      * @property handle
      * @since 0.1.0
-     */
+	 */
 	private(set) public var handle: JSContextRef!
 
 	/**
 	 * The context's global object.
      * @property global
      * @since 0.1.0
-     */
+	 */
 	private(set) public var global: JavaScriptValue!
 
 	/**
 	 * The context's bridged classes.
      * @property classes
      * @since 0.1.0
-     */
+	 */
 	internal(set) public var classes: [String: JavaScriptValue] = [:]
 
 	/**
 	 * The context's bridged objects.
      * @property objects
      * @since 0.1.0
-     */
+	 */
 	internal(set) public var objects: [String: JavaScriptValue] = [:]
 
 	//--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ open class JavaScriptContext {
 	 * Initializes the context.
      * @constructor
      * @since 0.1.0
-     */
+	 */
 	public init() {
 
 		self.handle = JavaScriptContextCreate(Bundle.main.bundleIdentifier ?? "Dezel Context")
@@ -117,7 +117,7 @@ open class JavaScriptContext {
 	 * @destructor
      * @since 0.1.0
 	 * @hidden
-     */
+	 */
 	deinit {
 		self.dispose()
 	}
@@ -317,7 +317,7 @@ open class JavaScriptContext {
 	 * Creates a return value.
      * @method createReturnValue
      * @since 0.1.0
-     */
+	 */
 	open func createReturnValue() -> JavaScriptValue {
 		return self.createUndefined()
 	}

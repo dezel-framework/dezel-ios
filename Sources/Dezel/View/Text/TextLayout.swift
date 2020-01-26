@@ -113,7 +113,7 @@ open class TextLayout {
 	private(set) public var limits: CGSize = .zero
 
 	/**
-	 * The layout's measured size.
+	 * The layout's extent.
 	 * @property extent
 	 * @since 0.1.0
 	 */

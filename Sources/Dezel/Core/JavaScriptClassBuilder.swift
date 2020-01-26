@@ -17,7 +17,7 @@ public final class JavaScriptClassBuilder: JavaScriptBuilder {
      * @method build
 	 * @since 0.1.0
 	 * @hidden
-     */
+	 */
 	public class func build(_ context: JavaScriptContext, template: AnyClass) -> JavaScriptValue {
 
 		let prototype = context.createEmptyObject()

@@ -58,7 +58,7 @@ open class JavaScriptBitmap: JavaScriptClass {
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	open func set(_ image: UIImage?) {
+	private func set(_ image: UIImage?) {
 
 		if let image = image {
 			self.bitmap = image
