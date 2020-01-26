@@ -48,14 +48,14 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 		}
 
 		let websocketUrl       = callback.argument(0)
-		let websocketProtocols = callback.argument(1)
+		// let websocketProtocols = callback.argument(1)
 
 		guard let url = websocketUrl.toURL() else {
 			NSLog("Invalid WebSocket URL")
 			return
 		}
 
-		self.socket = WebSocketConnection(url: url, protocols: websocketProtocols.toArrayOfString())
+		self.socket = WebSocketConnection(url: url, protocols: [])
 		self.socket.delegate = self
 		self.socket.connect()
 
