@@ -8,7 +8,7 @@ import UIKit
 open class Script: Source {
 
 	/**
-	 * Applies the source to the application.
+	 * @inherited
 	 * @method apply
 	 * @since 0.1.0
 	 */
