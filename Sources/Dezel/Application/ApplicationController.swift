@@ -150,26 +150,20 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		self.application = nil
 
 		for source in self.sources {
-			switch (source.type) {
-				case .style:
-					self.evaluateStyle(source.data, url: source.path)
-				case .script:
-					self.evaluateScript(source.data, url: source.path)
-			}
+			source.apply(application: self)
 		}
 
 		for module in self.modules {
 			module.didReload(context: self.context)
 		}
 
-		if (self.application != nil) {
-			self.launch()
-		}
+		self.launch()
 
 		self.loaded = true
 	}
 
 	/**
+	 * Reloads the application's styles.
 	 * @method reloadStyles
 	 * @since 0.1.0
 	 */
@@ -179,9 +173,8 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 
 		self.prepareStylesheet()
 
-		for source in self.sources where source.type == .style {
-		print(source.data)
-			self.stylesheet.evaluate(source.data, url: source.path)
+		for source in self.sources where source is Styles {
+			source.apply(application: self)
 		}
 
 		self.display.stylesheet = stylesheet
@@ -307,19 +300,12 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		}
 
 		for source in self.sources {
-			switch (source.type) {
-				case .style:
-					self.evaluateStyle(source.data, url: source.path)
-				case .script:
-					self.evaluateScript(source.data, url: source.path)
-			}
+			source.apply(application: self)
 		}
 
 		self.loaded = true
 
-		if (self.application != nil) {
-			self.launch()
-		}
+		self.launch()
 	}
 
 	/**
@@ -411,8 +397,8 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		for touch in touches {
 
 			let point = touch.location(
-					in: self.view
-				)
+				in: self.view
+			)
 
 			touch.target = self.application?.window.findViewAt(x: Double(point.x), y: Double(point.y))
 		}
@@ -741,7 +727,7 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 
 		return (r == 1 && g == 1 && b == 1 && a == 1) ? .lightContent : .default
 	}
-
+	
 	/**
 	 * @property statusBar
 	 * @since 0.1.0
@@ -991,7 +977,7 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 	private func launch() {
 
 		guard let application = self.application else {
-			fatalError("Unexpected error.")
+			return
 		}
 
 		self.display.window = application.window.node

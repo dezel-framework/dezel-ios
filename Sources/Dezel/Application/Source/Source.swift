@@ -7,35 +7,18 @@ import UIKit
 open class Source {
 
 	//--------------------------------------------------------------------------
-	// MARK: Enum
-	//--------------------------------------------------------------------------
-
-	/**
-	 * @enum Type
-	 * @since 0.1.0
-	 */
-	public enum `Type` {
-		case style
-		case script
-	}
-
-	//--------------------------------------------------------------------------
 	// MARK: Properties
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @property type
-	 * @since 0.1.0
-	 */
-	private(set) public var type: Type
-
-	/**
+	 * The source's path.
 	 * @property path
 	 * @since 0.1.0
 	 */
 	private(set) public var path: String
 
 	/**
+	 * The source's data.
 	 * @property data
 	 * @since 0.1.0
 	 */
@@ -48,12 +31,21 @@ open class Source {
 	//--------------------------------------------------------------------------
 
 	/**
+	 * Initializes the source.
 	 * @constructor
 	 * @since 0.1.0
 	 */
-	public init(type: Type, path: String) {
-		self.type = type
+	public init(path: String) {
 		self.path = path
+	}
+
+	/**
+	 * Applies the source to the application.
+	 * @method apply
+	 * @since 0.1.0
+	 */
+	open func apply(application: ApplicationController) {
+		fatalError("You must override this method")
 	}
 
 	//--------------------------------------------------------------------------
