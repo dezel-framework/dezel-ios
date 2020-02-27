@@ -148,6 +148,8 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		Synchronizer.main.execute()
 
 		self.loaded = true
+
+		Toast(view: self.view, text: "Reloaded").show()
 	}
 
 	/**
