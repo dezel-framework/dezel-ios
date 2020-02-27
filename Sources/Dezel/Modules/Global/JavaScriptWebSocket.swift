@@ -13,6 +13,32 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 	//--------------------------------------------------------------------------
 
 	/**
+	 * @property connections
+	 * @since 0.1.0
+	 */
+	private static var connections: [JavaScriptWebSocket] = []
+
+	/**
+	 * Stops all web socket connections.
+	 * @method reset
+	 * @since 0.1.0
+	 */
+	public static func reset() {
+
+		self.connections.forEach { connection in
+			connection.socket.disconnect()
+			connection.socket.delegate = nil
+			connection.unprotect()
+		}
+
+		self.connections.removeAll()
+	}
+
+	//--------------------------------------------------------------------------
+	// MARK:Properties
+	//--------------------------------------------------------------------------
+
+	/**
 	 * @property socket
 	 * @since 0.1.0
 	 */
@@ -27,8 +53,12 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 	 * @since 0.1.0
 	 */
 	override open func dispose() {
+
 		self.socket.disconnect()
 		self.socket.delegate = nil
+
+		JavaScriptWebSocket.connections.remove(self)
+
 		super.dispose()
 	}
 
@@ -48,7 +78,7 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 		}
 
 		let websocketUrl       = callback.argument(0)
-		// let websocketProtocols = callback.argument(1)
+		//let websocketProtocols = callback.argument(1)
 
 		guard let url = websocketUrl.toURL() else {
 			NSLog("Invalid WebSocket URL")
@@ -83,7 +113,7 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 	 */
 	@objc open func jsFunction_close(callback: JavaScriptFunctionCallback) {
 		self.socket.disconnect()
-		self.unprotect()
+		self.socket.delegate = nil
 	}
 
 	//--------------------------------------------------------------------------
@@ -96,6 +126,7 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 	 * @hidden
 	 */
 	open func websocketDidConnect(_ socket: WebSocketConnection) {
+		JavaScriptWebSocket.connections.append(self)
 		self.callMethod("nativeOnConnect", arguments: [
 			self.context.createString(""),
 			self.context.createString("")
@@ -128,6 +159,7 @@ public class JavaScriptWebSocket: JavaScriptClass, WebSocketDelegate {
 	 * @hidden
 	 */
 	open func websocketDidDisconnect(_ socket: WebSocketConnection, error: Error?) {
+		JavaScriptWebSocket.connections.remove(self)
 		self.callMethod("nativeOnDisconnect")
 		self.unprotect()
 	}

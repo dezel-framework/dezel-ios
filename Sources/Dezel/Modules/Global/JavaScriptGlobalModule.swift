@@ -96,18 +96,6 @@ open class JavaScriptGlobalModule : JavaScriptModule {
 		context.global.defineProperty("removeEventListener", value: context.createFunction(self.removeEventListener))
 		context.global.defineProperty("dispatchEvent", value: context.createFunction(self.dispatchEvent))
 		context.global.defineProperty("postMessage", value: context.createFunction(self.postMessage))
-
-		/*
-		 * In some rare case, such a with webpack, the WebSocket class will be
-		 * accessed before the core library is loaded. This is a simple fix
-		 * to make webpack websocket work.
-		 */
-
-		context.evaluate("""
-			global.WebSocket = function(url, protocols) {
-				return new WebSocket(url, protocols)
-			}
-		""")
 	}
 
     /**
@@ -126,6 +114,8 @@ open class JavaScriptGlobalModule : JavaScriptModule {
 		self.scheduledTimers.removeAll()
 		self.scheduledFrames.removeAll()
 		self.listeners.removeAll()
+
+		JavaScriptWebSocket.reset()
 	}
 
 	//--------------------------------------------------------------------------
