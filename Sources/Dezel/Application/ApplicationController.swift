@@ -8,17 +8,6 @@ import UIKit
 open class ApplicationController: UIViewController, StylesheetDelegate {
 
 	//--------------------------------------------------------------------------
-	// MARK: Statics
-	//--------------------------------------------------------------------------
-
-	/**
-	 * @const reloadNotification
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	public static let reloadNotification = Notification.Name("reload")
-
-	//--------------------------------------------------------------------------
 	// MARK: Properties
 	//--------------------------------------------------------------------------
 
@@ -135,8 +124,6 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 
 		self.loaded = false
 
-		NotificationCenter.default.post(name: ApplicationController.reloadNotification, object: self, userInfo: nil)
-
 		for module in self.modules {
 			module.willReload(context: self.context)
 		}
@@ -146,7 +133,6 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		Synchronizer.main.reset()
 
 		self.application?.destroy()
-		self.application?.window.wrapper.removeFromSuperview()
 		self.application = nil
 
 		for source in self.sources {
@@ -158,6 +144,8 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		}
 
 		self.launch()
+
+		Synchronizer.main.execute()
 
 		self.loaded = true
 	}
