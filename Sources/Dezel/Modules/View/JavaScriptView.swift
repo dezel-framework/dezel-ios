@@ -1552,7 +1552,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var border = JavaScriptProperty(string: "0 #000") { value in
+	@objc open lazy var border = JavaScriptProperty(string: "0 #000", parse: true) { value in
 
 		guard let composite = value.composite else {
 			return
@@ -1582,7 +1582,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderTop = JavaScriptProperty(string: "0 #000") { value in
+	@objc open lazy var borderTop = JavaScriptProperty(string: "0 #000", parse: true) { value in
 
 		guard let composite = value.composite else {
 			return
@@ -1602,7 +1602,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderLeft = JavaScriptProperty(string: "0 #000") { value in
+	@objc open lazy var borderLeft = JavaScriptProperty(string: "0 #000", parse: true) { value in
 
 		guard let composite = value.composite else {
 			return
@@ -1622,7 +1622,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderRight = JavaScriptProperty(string: "0 #000") { value in
+	@objc open lazy var borderRight = JavaScriptProperty(string: "0 #000", parse: true) { value in
 
 		guard let composite = value.composite else {
 			return
@@ -1642,7 +1642,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderBottom = JavaScriptProperty(string: "0 #000") { value in
+	@objc open lazy var borderBottom = JavaScriptProperty(string: "0 #000", parse: true) { value in
 
 		guard let composite = value.composite else {
 			return
@@ -3060,7 +3060,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsSet_backgroundImagePosition(callback: JavaScriptSetterCallback) {
-		self.backgroundImagePosition.reset(callback.value, lock: self, parse: true)
+		self.backgroundImagePosition.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------
@@ -3254,7 +3254,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsSet_borderTopColor(callback: JavaScriptSetterCallback) {
-		self.borderTopColor.reset(callback.value, lock: self, parse: true)
+		self.borderTopColor.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------
@@ -3274,7 +3274,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsSet_borderLeftColor(callback: JavaScriptSetterCallback) {
-		self.borderLeftColor.reset(callback.value, lock: self, parse: true)
+		self.borderLeftColor.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------
@@ -3294,7 +3294,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsSet_borderRightColor(callback: JavaScriptSetterCallback) {
-		self.borderRightColor.reset(callback.value, lock: self, parse: true)
+		self.borderRightColor.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------
@@ -3314,7 +3314,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsSet_borderBottomColor(callback: JavaScriptSetterCallback) {
-		self.borderBottomColor.reset(callback.value, lock: self, parse: true)
+		self.borderBottomColor.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------

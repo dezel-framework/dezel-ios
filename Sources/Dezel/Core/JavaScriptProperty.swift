@@ -265,6 +265,39 @@ public class JavaScriptProperty: NSObject {
 	 * @constructor
 	 * @since 0.1.0
 	 */
+	public init(string: String, parse: Bool, handler: JavaScriptPropertyChangeHandler? = nil) {
+
+		self.handler = handler
+
+		if (parse == false) {
+
+			self.initialValue = JavaScriptPropertyStringValue(value: string)
+			self.currentValue = JavaScriptPropertyStringValue(value: string)
+
+			super.init()
+
+			return
+		}
+
+		self.initialValue = JavaScriptProperty.Null
+		self.currentValue = JavaScriptProperty.Null
+		
+		super.init()
+
+		guard let values = ValueParse(string) else {
+			return
+		}
+
+		self.initialize(values)
+
+		ValueListDelete(values)
+	}
+
+	/**
+	 * Initializes the property.
+	 * @constructor
+	 * @since 0.1.0
+	 */
 	public init(number: Double, handler: JavaScriptPropertyChangeHandler? = nil) {
 		self.initialValue = JavaScriptPropertyNumberValue(value: number)
 		self.currentValue = JavaScriptPropertyNumberValue(value: number)
@@ -310,6 +343,16 @@ public class JavaScriptProperty: NSObject {
 	 */
 	public convenience init(string: String, lock: AnyObject, handler: JavaScriptPropertyChangeHandler? = nil) {
 		self.init(string: string, handler: handler)
+		self.lock = lock
+	}
+
+	/**
+	 * Initializes the property.
+	 * @constructor
+	 * @since 0.1.0
+	 */
+	public convenience init(string: String, parse: Bool, lock: AnyObject, handler: JavaScriptPropertyChangeHandler? = nil) {
+		self.init(string: string, parse: parse, handler: handler)
 		self.lock = lock
 	}
 
@@ -630,6 +673,24 @@ public class JavaScriptProperty: NSObject {
 	 */
 	open func toHandle(_ context: JavaScriptContext) -> JSValueRef? {
 		return self.currentValue.toHandle(context)
+	}
+
+	/**
+	 * @method resetInitialValue
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	internal func resetInitialValue(_ value: JavaScriptPropertyValue) {
+		self.initialValue = value
+	}
+
+	/**
+	 * @method resetCurrentValue
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	internal func resetCurrentValue(_ value: JavaScriptPropertyValue) {
+		self.initialValue = value
 	}
 
 	//--------------------------------------------------------------------------

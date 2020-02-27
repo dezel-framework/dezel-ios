@@ -10,6 +10,93 @@ import DezelCoreUI
 internal extension JavaScriptProperty {
 
 	/**
+	 * @method initialize
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	func initialize(_ values: ValueListRef) {
+
+		let count = ValueListGetCount(values)
+		if (count == 1) {
+
+			guard let value = ValueListGetValue(values, 0) else {
+				return
+			}
+
+			switch (ValueGetType(value)) {
+
+				case kValueTypeNull:
+					self.resetInitialValue(JavaScriptProperty.Null)
+					self.resetCurrentValue(JavaScriptProperty.Null)
+
+				case kValueTypeString:
+					let initial = ValueGetString(value).string
+					self.resetInitialValue(JavaScriptPropertyStringValue(value: initial))
+					self.resetCurrentValue(JavaScriptPropertyStringValue(value: initial))
+
+				case kValueTypeNumber:
+					let initial = ValueGetNumber(value)
+					self.resetInitialValue(JavaScriptPropertyNumberValue(value: initial))
+					self.resetCurrentValue(JavaScriptPropertyNumberValue(value: initial))
+
+				case kValueTypeBoolean:
+					let initial = ValueGetBoolean(value)
+					self.resetInitialValue(JavaScriptPropertyBooleanValue(value: initial))
+					self.resetCurrentValue(JavaScriptPropertyBooleanValue(value: initial))
+
+				case kValueTypeVariable:
+					self.resetInitialValue(self.createVariable(value))
+					self.resetCurrentValue(self.createVariable(value))
+
+				case kValueTypeFunction:
+					self.resetInitialValue(self.createFunction(value))
+					self.resetCurrentValue(self.createFunction(value))
+
+				default:
+					break
+			}
+
+		} else {
+
+			/*
+			 * The parser returned multiple values. In this case we create a
+			 * composite value and reset the property with it.
+			 */
+
+			var components = [JavaScriptPropertyValue]()
+
+			for i in 0 ..< count {
+
+				guard let value = ValueListGetValue(values, i) else {
+					continue
+				}
+
+				switch (ValueGetType(value)) {
+
+					case kValueTypeNull:
+						components.append(JavaScriptProperty.Null)
+					case kValueTypeString:
+						components.append(self.createString(value))
+					case kValueTypeNumber:
+						components.append(self.createNumber(value))
+					case kValueTypeBoolean:
+						components.append(self.createBoolean(value))
+					case kValueTypeVariable:
+						components.append(self.createVariable(value))
+					case kValueTypeFunction:
+						components.append(self.createFunction(value))
+
+					default:
+						break
+				}
+			}
+
+			self.resetInitialValue(JavaScriptPropertyCompositeValue(values: components))
+			self.resetCurrentValue(JavaScriptPropertyCompositeValue(values: components))
+		}
+	}
+
+	/**
 	 * @method reset
 	 * @since 0.1.0
 	 * @hidden
