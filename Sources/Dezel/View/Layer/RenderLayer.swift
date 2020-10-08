@@ -17,10 +17,10 @@ public class RenderLayer: Layer {
 	 */
 	override open class func needsDisplay(forKey key: String) -> Bool {
 
-		if (key == "borderTopLeftRadius" ||
-			key == "borderTopRightRadius" ||
-			key == "borderBottomLeftRadius" ||
-			key == "borderBottomRightRadius") {
+		if (key == "cornerTopLeftRadius" ||
+			key == "cornerTopRightRadius" ||
+			key == "cornerBottomLeftRadius" ||
+			key == "cornerBottomRightRadius") {
 			return true
 		}
 
@@ -33,31 +33,31 @@ public class RenderLayer: Layer {
 
 	/**
 	 * The layer's top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopLeftRadius: CGFloat
+	@NSManaged public var cornerTopLeftRadius: CGFloat
 
 	/**
 	 * The layer's top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopRightRadius: CGFloat
+	@NSManaged public var cornerTopRightRadius: CGFloat
 
 	/**
 	 * The layer's bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomLeftRadius: CGFloat
+	@NSManaged public var cornerBottomLeftRadius: CGFloat
 
 	/**
 	 * The layer's bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomRightRadius: CGFloat
+	@NSManaged public var cornerBottomRightRadius: CGFloat
 
 	/**
 	 * @property shape
@@ -100,10 +100,10 @@ public class RenderLayer: Layer {
 		super.init(layer: layer)
 
 		if let layer = layer as? RenderLayer {
-			self.borderTopLeftRadius = layer.borderTopLeftRadius
-			self.borderTopRightRadius = layer.borderTopRightRadius
-			self.borderBottomLeftRadius = layer.borderBottomLeftRadius
-			self.borderBottomRightRadius = layer.borderBottomRightRadius
+			self.cornerTopLeftRadius = layer.cornerTopLeftRadius
+			self.cornerTopRightRadius = layer.cornerTopRightRadius
+			self.cornerBottomLeftRadius = layer.cornerBottomLeftRadius
+			self.cornerBottomRightRadius = layer.cornerBottomRightRadius
 		}
 	}
 
@@ -121,21 +121,21 @@ public class RenderLayer: Layer {
 		let layerW = self.bounds.size.width
 		let layerH = self.bounds.size.height
 
-		let borderRadiusTL = self.borderTopLeftRadius
-		let borderRadiusTR = self.borderTopRightRadius
-		let borderRadiusBL = self.borderBottomLeftRadius
-		let borderRadiusBR = self.borderBottomRightRadius
+		let cornerRadiusTL = self.cornerTopLeftRadius
+		let cornerRadiusTR = self.cornerTopRightRadius
+		let cornerRadiusBL = self.cornerBottomLeftRadius
+		let cornerRadiusBR = self.cornerBottomRightRadius
 
-		if (borderRadiusTL > 0 || borderRadiusTR > 0 ||
-			borderRadiusBL > 0 || borderRadiusBR > 0) {
+		if (cornerRadiusTL > 0 || cornerRadiusTR > 0 ||
+			cornerRadiusBL > 0 || cornerRadiusBR > 0) {
 
 			self.shape.path = CGOuterRoundedRectPath(
 				layerW,
 				layerH,
-				borderRadiusTL,
-				borderRadiusTR,
-				borderRadiusBL,
-				borderRadiusBR
+				cornerRadiusTL,
+				cornerRadiusTR,
+				cornerRadiusBL,
+				cornerRadiusBR
 			)
 
 			self.mask = self.shape
@@ -201,10 +201,10 @@ public class RenderLayer: Layer {
 	 */
 	override open func didFinishTransition(layer: CALayer) {
 
-		if (self.borderTopLeftRadius > 0 ||
-			self.borderTopRightRadius > 0 ||
-			self.borderBottomLeftRadius > 0 ||
-			self.borderBottomRightRadius > 0) {
+		if (self.cornerTopLeftRadius > 0 ||
+			self.cornerTopRightRadius > 0 ||
+			self.cornerBottomLeftRadius > 0 ||
+			self.cornerBottomRightRadius > 0) {
 			self.shouldRasterize = true
 			return
 		}

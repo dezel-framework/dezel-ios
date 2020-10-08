@@ -26,14 +26,14 @@ public class BorderLayer: Layer {
 			key == "borderLeftColor" ||
 			key == "borderRightColor" ||
 			key == "borderBottomColor" ||
-			key == "borderTopLeftRadius" ||
-			key == "borderTopRightRadius" ||
-			key == "borderBottomLeftRadius" ||
-			key == "borderBottomRightRadius" ||
-			key == "borderTopLeftInnerRadius" ||
-			key == "borderTopRightInnerRadius" ||
-			key == "borderBottomLeftInnerRadius" ||
-			key == "borderBottomRightInnerRadius") {
+			key == "cornerTopLeftRadius" ||
+			key == "cornerTopRightRadius" ||
+			key == "cornerBottomLeftRadius" ||
+			key == "cornerBottomRightRadius" ||
+			key == "cornerTopLeftInnerRadius" ||
+			key == "cornerTopRightInnerRadius" ||
+			key == "cornerBottomLeftInnerRadius" ||
+			key == "cornerBottomRightInnerRadius") {
 			return true
 		}
 
@@ -102,59 +102,59 @@ public class BorderLayer: Layer {
 
 	/**
 	 * The layer's top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopLeftRadius: CGFloat
+	@NSManaged public var cornerTopLeftRadius: CGFloat
 
 	/**
 	 * The layer's top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopRightRadius: CGFloat
+	@NSManaged public var cornerTopRightRadius: CGFloat
 
 	/**
 	 * The layer's bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomLeftRadius: CGFloat
+	@NSManaged public var cornerBottomLeftRadius: CGFloat
 
 	/**
 	 * The layer's bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomRightRadius: CGFloat
+	@NSManaged public var cornerBottomRightRadius: CGFloat
 
 	/**
 	 * The layer's top left inner border radius.
-	 * @property borderTopLeftInnerRadius
+	 * @property cornerTopLeftInnerRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopLeftInnerRadius: CGPoint
+	@NSManaged public var cornerTopLeftInnerRadius: CGPoint
 
 	/**
 	 * The layer's top right inner border radius.
-	 * @property borderTopRightInnerRadius
+	 * @property cornerTopRightInnerRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopRightInnerRadius: CGPoint
+	@NSManaged public var cornerTopRightInnerRadius: CGPoint
 
 	/**
 	 * The layer's bottom left inner border radius.
-	 * @property borderBottomLeftInnerRadius
+	 * @property cornerBottomLeftInnerRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomLeftInnerRadius: CGPoint
+	@NSManaged public var cornerBottomLeftInnerRadius: CGPoint
 
 	/**
 	 * The layer's bottom right inner border radius.
-	 * @property borderBottomRightInnerRadius
+	 * @property cornerBottomRightInnerRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomRightInnerRadius: CGPoint
+	@NSManaged public var cornerBottomRightInnerRadius: CGPoint
 
 	//--------------------------------------------------------------------------
 	// MARK: Methods
@@ -199,15 +199,15 @@ public class BorderLayer: Layer {
 			self.borderRightColor = layer.borderRightColor
 			self.borderBottomColor = layer.borderBottomColor
 
-			self.borderTopLeftRadius = layer.borderTopLeftRadius
-			self.borderTopRightRadius = layer.borderTopRightRadius
-			self.borderBottomLeftRadius = layer.borderBottomLeftRadius
-			self.borderBottomRightRadius = layer.borderBottomRightRadius
+			self.cornerTopLeftRadius = layer.cornerTopLeftRadius
+			self.cornerTopRightRadius = layer.cornerTopRightRadius
+			self.cornerBottomLeftRadius = layer.cornerBottomLeftRadius
+			self.cornerBottomRightRadius = layer.cornerBottomRightRadius
 
-			self.borderTopLeftInnerRadius = layer.borderTopLeftInnerRadius
-			self.borderTopRightInnerRadius = layer.borderTopRightInnerRadius
-			self.borderBottomLeftInnerRadius = layer.borderBottomLeftInnerRadius
-			self.borderBottomRightInnerRadius = layer.borderBottomRightInnerRadius
+			self.cornerTopLeftInnerRadius = layer.cornerTopLeftInnerRadius
+			self.cornerTopRightInnerRadius = layer.cornerTopRightInnerRadius
+			self.cornerBottomLeftInnerRadius = layer.cornerBottomLeftInnerRadius
+			self.cornerBottomRightInnerRadius = layer.cornerBottomRightInnerRadius
 		}
 	}
 
@@ -248,10 +248,10 @@ public class BorderLayer: Layer {
 			borderColorR = presentationLayer.borderRightColor
 			borderColorB = presentationLayer.borderBottomColor
 
-			innerRadiusTL = presentationLayer.borderTopLeftInnerRadius
-			innerRadiusTR = presentationLayer.borderTopRightInnerRadius
-			innerRadiusBL = presentationLayer.borderBottomLeftInnerRadius
-			innerRadiusBR = presentationLayer.borderBottomRightInnerRadius
+			innerRadiusTL = presentationLayer.cornerTopLeftInnerRadius
+			innerRadiusTR = presentationLayer.cornerTopRightInnerRadius
+			innerRadiusBL = presentationLayer.cornerBottomLeftInnerRadius
+			innerRadiusBR = presentationLayer.cornerBottomRightInnerRadius
 
 			layerW = presentationLayer.bounds.size.width
 			layerH = presentationLayer.bounds.size.height
@@ -268,10 +268,10 @@ public class BorderLayer: Layer {
 			borderColorR = self.borderRightColor
 			borderColorB = self.borderBottomColor
 
-			innerRadiusTL = self.borderTopLeftInnerRadius
-			innerRadiusTR = self.borderTopRightInnerRadius
-			innerRadiusBL = self.borderBottomLeftInnerRadius
-			innerRadiusBR = self.borderBottomRightInnerRadius
+			innerRadiusTL = self.cornerTopLeftInnerRadius
+			innerRadiusTR = self.cornerTopRightInnerRadius
+			innerRadiusBL = self.cornerBottomLeftInnerRadius
+			innerRadiusBR = self.cornerBottomRightInnerRadius
 
 			layerW = self.bounds.size.width
 			layerH = self.bounds.size.height
@@ -432,22 +432,22 @@ public class BorderLayer: Layer {
 					animation.fromValue = current!.borderRightColor
 				case "borderBottomColor":
 					animation.fromValue = current!.borderBottomColor
-				case "borderTopLeftRadius":
-					animation.fromValue = current!.borderTopLeftRadius
-				case "borderTopRightRadius":
-					animation.fromValue = current!.borderTopRightRadius
-				case "borderBottomLeftRadius":
-					animation.fromValue = current!.borderBottomLeftRadius
-				case "borderBottomRightRadius":
-					animation.fromValue = current!.borderBottomRightRadius
-				case "borderTopLeftInnerRadius":
-					animation.fromValue = current!.borderTopLeftInnerRadius
-				case "borderTopRightInnerRadius":
-					animation.fromValue = current!.borderTopRightInnerRadius
-				case "borderBottomLeftInnerRadius":
-					animation.fromValue = current!.borderBottomLeftInnerRadius
-				case "borderBottomRightInnerRadius":
-					animation.fromValue = current!.borderBottomRightInnerRadius
+				case "cornerTopLeftRadius":
+					animation.fromValue = current!.cornerTopLeftRadius
+				case "cornerTopRightRadius":
+					animation.fromValue = current!.cornerTopRightRadius
+				case "cornerBottomLeftRadius":
+					animation.fromValue = current!.cornerBottomLeftRadius
+				case "cornerBottomRightRadius":
+					animation.fromValue = current!.cornerBottomRightRadius
+				case "cornerTopLeftInnerRadius":
+					animation.fromValue = current!.cornerTopLeftInnerRadius
+				case "cornerTopRightInnerRadius":
+					animation.fromValue = current!.cornerTopRightInnerRadius
+				case "cornerBottomLeftInnerRadius":
+					animation.fromValue = current!.cornerBottomLeftInnerRadius
+				case "cornerBottomRightInnerRadius":
+					animation.fromValue = current!.cornerBottomRightInnerRadius
 
 				default:
 					return NSNull()

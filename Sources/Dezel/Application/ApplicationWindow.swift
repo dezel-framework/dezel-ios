@@ -12,6 +12,7 @@ open class ApplicationWindow: UIWindow {
 	//--------------------------------------------------------------------------
 
 	/**
+	 * @inherited
      * @method sendEvent
      * @since 0.1.0
      */

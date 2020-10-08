@@ -960,7 +960,7 @@ open class JavaScriptRecycler : JavaScriptClass, JavaScriptView.Delegate {
 	private func insertSpot(_ index: Int) {
 
 		/*
-		 * TOO Explain
+		 * TODO Explain
 		 */
 
 		if (index > self.tailIndex) {
@@ -988,7 +988,7 @@ open class JavaScriptRecycler : JavaScriptClass, JavaScriptView.Delegate {
 	private func removeSpot(_ index: Int) {
 
 		/*
-		 * TOO Explain
+		 * TODO Explain
 		 */
 
 		for i in index ..< self.tailIndex {

@@ -606,10 +606,10 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		self.wrapper.borderLeftWidth = CGFloat(self.resolvedBorderLeftWidth)
 		self.wrapper.borderRightWidth = CGFloat(self.resolvedBorderRightWidth)
 		self.wrapper.borderBottomWidth = CGFloat(self.resolvedBorderBottomWidth)
-		self.wrapper.borderTopLeftRadius = CGFloat(self.borderTopLeftRadius.number)
-		self.wrapper.borderTopRightRadius = CGFloat(self.borderTopRightRadius.number)
-		self.wrapper.borderBottomLeftRadius = CGFloat(self.borderBottomLeftRadius.number)
-		self.wrapper.borderBottomRightRadius = CGFloat(self.borderBottomRightRadius.number)
+		self.wrapper.cornerTopLeftRadius = CGFloat(self.cornerTopLeftRadius.number)
+		self.wrapper.cornerTopRightRadius = CGFloat(self.cornerTopRightRadius.number)
+		self.wrapper.cornerBottomLeftRadius = CGFloat(self.cornerBottomLeftRadius.number)
+		self.wrapper.cornerBottomRightRadius = CGFloat(self.cornerBottomRightRadius.number)
 	}
 
 	/**
@@ -1826,50 +1826,50 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	}
 
 	/**
-	 * @property borderRadius
+	 * @property cornerRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderRadius = JavaScriptProperty(number: 0) { value in
-		self.borderTopLeftRadius.reset(value)
-		self.borderTopRightRadius.reset(value)
-		self.borderBottomLeftRadius.reset(value)
-		self.borderBottomRightRadius.reset(value)
+	@objc open lazy var cornerRadius = JavaScriptProperty(number: 0) { value in
+		self.cornerTopLeftRadius.reset(value)
+		self.cornerTopRightRadius.reset(value)
+		self.cornerBottomLeftRadius.reset(value)
+		self.cornerBottomRightRadius.reset(value)
 	}
 
 	/**
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderTopLeftRadius = JavaScriptProperty(number: 0) { value in
+	@objc open lazy var cornerTopLeftRadius = JavaScriptProperty(number: 0) { value in
 		self.invalidateBorder()
 	}
 
 	/**
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderTopRightRadius = JavaScriptProperty(number: 0) { value in
+	@objc open lazy var cornerTopRightRadius = JavaScriptProperty(number: 0) { value in
 		self.invalidateBorder()
 	}
 
 	/**
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderBottomLeftRadius = JavaScriptProperty(number: 0) { value in
+	@objc open lazy var cornerBottomLeftRadius = JavaScriptProperty(number: 0) { value in
 		self.invalidateBorder()
 	}
 
 	/**
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var borderBottomRightRadius = JavaScriptProperty(number: 0) { value in
+	@objc open lazy var cornerBottomRightRadius = JavaScriptProperty(number: 0) { value in
 		self.invalidateBorder()
 	}
 
@@ -3560,108 +3560,108 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderRadius
+	 * @method jsGet_cornerRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_borderRadius(callback: JavaScriptGetterCallback) {
+	@objc open func jsGet_cornerRadius(callback: JavaScriptGetterCallback) {
 
 		let value = self.context.createEmptyObject()
-		value.property("topLeft", property: self.borderTopLeftRadius)
-		value.property("topRight", property: self.borderTopRightRadius)
-		value.property("bottomLeft", property: self.borderBottomLeftRadius)
-		value.property("bottomRight", property: self.borderBottomRightRadius)
+		value.property("topLeft", property: self.cornerTopLeftRadius)
+		value.property("topRight", property: self.cornerTopRightRadius)
+		value.property("bottomLeft", property: self.cornerBottomLeftRadius)
+		value.property("bottomRight", property: self.cornerBottomRightRadius)
 
 		callback.returns(value)
 	}
 
 	/**
-	 * @method jsSet_borderRadius
+	 * @method jsSet_cornerRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_borderRadius(callback: JavaScriptSetterCallback) {
-		self.borderRadius.reset(callback.value, lock: self, parse: true)
+	@objc open func jsSet_cornerRadius(callback: JavaScriptSetterCallback) {
+		self.cornerRadius.reset(callback.value, lock: self, parse: true)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderTopLeftRadius
+	 * @method jsGet_cornerTopLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_borderTopLeftRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(self.borderTopLeftRadius)
+	@objc open func jsGet_cornerTopLeftRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(self.cornerTopLeftRadius)
 	}
 
 	/**
-	 * @method jsSet_borderTopLeftRadius
+	 * @method jsSet_cornerTopLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_borderTopLeftRadius(callback: JavaScriptSetterCallback) {
-		self.borderTopLeftRadius.reset(callback.value, lock: self, parse: true)
-	}
-
-	//--------------------------------------------------------------------------
-
-	/**
-	 * @method jsGet_borderTopRightRadius
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	@objc open func jsGet_borderTopRightRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(self.borderTopRightRadius)
-	}
-
-	/**
-	 * @method jsSet_borderTopRightRadius
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	@objc open func jsSet_borderTopRightRadius(callback: JavaScriptSetterCallback) {
-		self.borderTopRightRadius.reset(callback.value, lock: self, parse: true)
+	@objc open func jsSet_cornerTopLeftRadius(callback: JavaScriptSetterCallback) {
+		self.cornerTopLeftRadius.reset(callback.value, lock: self, parse: true)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderBottomLeftRadius
+	 * @method jsGet_cornerTopRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_borderBottomLeftRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(self.borderBottomLeftRadius)
+	@objc open func jsGet_cornerTopRightRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(self.cornerTopRightRadius)
 	}
 
 	/**
-	 * @method jsSet_borderBottomLeftRadius
+	 * @method jsSet_cornerTopRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_borderBottomLeftRadius(callback: JavaScriptSetterCallback) {
-		self.borderBottomLeftRadius.reset(callback.value, lock: self, parse: true)
+	@objc open func jsSet_cornerTopRightRadius(callback: JavaScriptSetterCallback) {
+		self.cornerTopRightRadius.reset(callback.value, lock: self, parse: true)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderBottomRightRadius
+	 * @method jsGet_cornerBottomLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_borderBottomRightRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(self.borderBottomRightRadius)
+	@objc open func jsGet_cornerBottomLeftRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(self.cornerBottomLeftRadius)
 	}
 
 	/**
-	 * @method jsSet_borderBottomRightRadius
+	 * @method jsSet_cornerBottomLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_borderBottomRightRadius(callback: JavaScriptSetterCallback) {
-		self.borderBottomRightRadius.reset(callback.value, lock: self, parse: true)
+	@objc open func jsSet_cornerBottomLeftRadius(callback: JavaScriptSetterCallback) {
+		self.cornerBottomLeftRadius.reset(callback.value, lock: self, parse: true)
+	}
+
+	//--------------------------------------------------------------------------
+
+	/**
+	 * @method jsGet_cornerBottomRightRadius
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	@objc open func jsGet_cornerBottomRightRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(self.cornerBottomRightRadius)
+	}
+
+	/**
+	 * @method jsSet_cornerBottomRightRadius
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	@objc open func jsSet_cornerBottomRightRadius(callback: JavaScriptSetterCallback) {
+		self.cornerBottomRightRadius.reset(callback.value, lock: self, parse: true)
 	}
 
 	//--------------------------------------------------------------------------

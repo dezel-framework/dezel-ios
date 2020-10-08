@@ -6,7 +6,7 @@ let package = Package(
     name: "Dezel",
 
     platforms: [
-		.iOS(.v11)
+		.iOS(.v11),
     ],
 
     products: [
@@ -39,7 +39,8 @@ let package = Package(
 				"DezelObjC",
 				"DezelCoreJS",
 				"DezelCoreUI"
-			]
+			],
+			path: "Sources/Dezel"
 		),
 
         .testTarget(

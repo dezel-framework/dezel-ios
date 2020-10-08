@@ -18,10 +18,10 @@ open class ShadowLayer: Layer {
 	 */
 	override open class func needsDisplay(forKey key: String) -> Bool {
 
-		if (key == "borderTopLeftRadius" ||
-			key == "borderTopRightRadius" ||
-			key == "borderBottomLeftRadius" ||
-			key == "borderBottomRightRadius" ||
+		if (key == "cornerTopLeftRadius" ||
+			key == "cornerTopRightRadius" ||
+			key == "cornerBottomLeftRadius" ||
+			key == "cornerBottomRightRadius" ||
 			key == "shadowBlur" ||
 			key == "shadowColor") {
 			return true
@@ -57,31 +57,31 @@ open class ShadowLayer: Layer {
 
 	/**
 	 * The layer's top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopLeftRadius: CGFloat
+	@NSManaged public var cornerTopLeftRadius: CGFloat
 
 	/**
 	 * The layer's top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderTopRightRadius: CGFloat
+	@NSManaged public var cornerTopRightRadius: CGFloat
 
 	/**
 	 * The layer's bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomLeftRadius: CGFloat
+	@NSManaged public var cornerBottomLeftRadius: CGFloat
 
 	/**
 	 * The layer's bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	@NSManaged public var borderBottomRightRadius: CGFloat
+	@NSManaged public var cornerBottomRightRadius: CGFloat
 
 	//--------------------------------------------------------------------------
 	// MARK: Methods
@@ -120,10 +120,10 @@ open class ShadowLayer: Layer {
 			self.shadowOffsetTop = layer.shadowOffsetTop
 			self.shadowOffsetLeft = layer.shadowOffsetLeft
 
-			self.borderTopLeftRadius = layer.borderTopLeftRadius
-			self.borderTopRightRadius = layer.borderTopRightRadius
-			self.borderBottomLeftRadius = layer.borderBottomLeftRadius
-			self.borderBottomRightRadius = layer.borderBottomRightRadius
+			self.cornerTopLeftRadius = layer.cornerTopLeftRadius
+			self.cornerTopRightRadius = layer.cornerTopRightRadius
+			self.cornerBottomLeftRadius = layer.cornerBottomLeftRadius
+			self.cornerBottomRightRadius = layer.cornerBottomRightRadius
 		}
 	}
 
@@ -191,10 +191,10 @@ open class ShadowLayer: Layer {
 
 		self.resize(self.bounds)
 
-		let borderRadiusTL: CGFloat
-		let borderRadiusTR: CGFloat
-		let borderRadiusBL: CGFloat
-		let borderRadiusBR: CGFloat
+		let cornerRadiusTL: CGFloat
+		let cornerRadiusTR: CGFloat
+		let cornerRadiusBL: CGFloat
+		let cornerRadiusBR: CGFloat
 
 		let shadowBlur: CGFloat
 		let shadowColor: CGColor?
@@ -204,10 +204,10 @@ open class ShadowLayer: Layer {
 
 		if let presentationLayer = self.presentation() {
 
-			borderRadiusTL = presentationLayer.borderTopLeftRadius
-			borderRadiusTR = presentationLayer.borderTopRightRadius
-			borderRadiusBL = presentationLayer.borderBottomLeftRadius
-			borderRadiusBR = presentationLayer.borderBottomRightRadius
+			cornerRadiusTL = presentationLayer.cornerTopLeftRadius
+			cornerRadiusTR = presentationLayer.cornerTopRightRadius
+			cornerRadiusBL = presentationLayer.cornerBottomLeftRadius
+			cornerRadiusBR = presentationLayer.cornerBottomRightRadius
 
 			shadowBlur = ceil(presentationLayer.shadowBlur)
 			shadowColor = presentationLayer.shadowColor
@@ -217,10 +217,10 @@ open class ShadowLayer: Layer {
 
 		} else {
 
-			borderRadiusTL = self.borderTopLeftRadius
-			borderRadiusTR = self.borderTopRightRadius
-			borderRadiusBL = self.borderBottomLeftRadius
-			borderRadiusBR = self.borderBottomRightRadius
+			cornerRadiusTL = self.cornerTopLeftRadius
+			cornerRadiusTR = self.cornerTopRightRadius
+			cornerRadiusBL = self.cornerBottomLeftRadius
+			cornerRadiusBR = self.cornerBottomRightRadius
 
 			shadowBlur = ceil(self.shadowBlur)
 			shadowColor = self.shadowColor
@@ -245,8 +245,8 @@ open class ShadowLayer: Layer {
 		 */
 
 		let inner = max(
-			borderRadiusTL, borderRadiusTR,
-			borderRadiusBR, borderRadiusBL,
+			cornerRadiusTL, cornerRadiusTR,
+			cornerRadiusBR, cornerRadiusBL,
 			shadowBlur
 		)
 
@@ -281,10 +281,10 @@ open class ShadowLayer: Layer {
 			let path = CGOuterRoundedRectPath(
 				shapeW,
 				shapeH,
-				borderRadiusTL,
-				borderRadiusTR,
-				borderRadiusBL,
-				borderRadiusBR
+				cornerRadiusTL,
+				cornerRadiusTR,
+				cornerRadiusBL,
+				cornerRadiusBR
 			)
 
 			context.beginPath()
@@ -337,14 +337,14 @@ open class ShadowLayer: Layer {
 					animation.fromValue = current!.shadowOffsetTop
 				case "shadowOffsetLeft":
 					animation.fromValue = current!.shadowOffsetLeft
-				case "borderTopLeftRadius":
-					animation.fromValue = current!.borderTopLeftRadius
-				case "borderTopRightRadius":
-					animation.fromValue = current!.borderTopRightRadius
-				case "borderBottomLeftRadius":
-					animation.fromValue = current!.borderBottomLeftRadius
-				case "borderBottomRightRadius":
-					animation.fromValue = current!.borderBottomRightRadius
+				case "cornerTopLeftRadius":
+					animation.fromValue = current!.cornerTopLeftRadius
+				case "cornerTopRightRadius":
+					animation.fromValue = current!.cornerTopRightRadius
+				case "cornerBottomLeftRadius":
+					animation.fromValue = current!.cornerBottomLeftRadius
+				case "cornerBottomRightRadius":
+					animation.fromValue = current!.cornerBottomRightRadius
 
 				default:
 					return NSNull()

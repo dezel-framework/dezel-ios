@@ -33,7 +33,8 @@ internal extension CGFloat {
 	static var max: CGFloat {
 		return +CGFloat.greatestFiniteMagnitude
 	}
-		/**
+
+	/**
 	 * @method sround
 	 * @since 0.1.0
 	 * @hidden

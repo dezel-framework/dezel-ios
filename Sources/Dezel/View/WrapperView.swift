@@ -217,10 +217,10 @@ open class WrapperView: UIView, Animatable {
 
 	/**
 	 * The wrapper's top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	open var borderTopLeftRadius: CGFloat = 0 {
+	open var cornerTopLeftRadius: CGFloat = 0 {
 		willSet {
 			self.invalidateShape()
 		}
@@ -228,10 +228,10 @@ open class WrapperView: UIView, Animatable {
 
 	/**
 	 * The wrapper's top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	open var borderTopRightRadius: CGFloat = 0 {
+	open var cornerTopRightRadius: CGFloat = 0 {
 		willSet {
 			self.invalidateShape()
 		}
@@ -239,10 +239,10 @@ open class WrapperView: UIView, Animatable {
 
 	/**
 	 * The wrapper's bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	open var borderBottomLeftRadius: CGFloat = 0 {
+	open var cornerBottomLeftRadius: CGFloat = 0 {
 		willSet {
 			self.invalidateShape()
 		}
@@ -250,10 +250,10 @@ open class WrapperView: UIView, Animatable {
 
 	/**
 	 * The wrapper's bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	open var borderBottomRightRadius: CGFloat = 0 {
+	open var cornerBottomRightRadius: CGFloat = 0 {
 		willSet {
 			self.invalidateShape()
 		}
@@ -536,10 +536,10 @@ open class WrapperView: UIView, Animatable {
 		let shapeW = self.bounds.width
 		let shapeH = self.bounds.height
 
-		var outerTL = self.borderTopLeftRadius
-		var outerTR = self.borderTopRightRadius
-		var outerBL = self.borderBottomLeftRadius
-		var outerBR = self.borderBottomRightRadius
+		var outerTL = self.cornerTopLeftRadius
+		var outerTR = self.cornerTopRightRadius
+		var outerBL = self.cornerBottomLeftRadius
+		var outerBR = self.cornerBottomRightRadius
 
 		let maxRadius = (min(shapeW, shapeH) / 2.0)
 
@@ -651,25 +651,25 @@ open class WrapperView: UIView, Animatable {
 		let innerBL = CGPoint(x: innerBLX, y: innerBLY)
 		let innerBR = CGPoint(x: innerBRX, y: innerBRY)
 
-		self.shadowLayer.borderTopLeftRadius = outerTL
-		self.shadowLayer.borderTopRightRadius = outerTR
-		self.shadowLayer.borderBottomLeftRadius = outerBL
-		self.shadowLayer.borderBottomRightRadius = outerBR
+		self.shadowLayer.cornerTopLeftRadius = outerTL
+		self.shadowLayer.cornerTopRightRadius = outerTR
+		self.shadowLayer.cornerBottomLeftRadius = outerBL
+		self.shadowLayer.cornerBottomRightRadius = outerBR
 
-		self.renderLayer.borderTopLeftRadius = outerTL
-		self.renderLayer.borderTopRightRadius = outerTR
-		self.renderLayer.borderBottomLeftRadius = outerBL
-		self.renderLayer.borderBottomRightRadius = outerBR
+		self.renderLayer.cornerTopLeftRadius = outerTL
+		self.renderLayer.cornerTopRightRadius = outerTR
+		self.renderLayer.cornerBottomLeftRadius = outerBL
+		self.renderLayer.cornerBottomRightRadius = outerBR
 
-		self.borderLayer.borderTopLeftRadius = outerTL
-		self.borderLayer.borderTopRightRadius = outerTR
-		self.borderLayer.borderBottomLeftRadius = outerBL
-		self.borderLayer.borderBottomRightRadius = outerBR
+		self.borderLayer.cornerTopLeftRadius = outerTL
+		self.borderLayer.cornerTopRightRadius = outerTR
+		self.borderLayer.cornerBottomLeftRadius = outerBL
+		self.borderLayer.cornerBottomRightRadius = outerBR
 
-		self.borderLayer.borderTopLeftInnerRadius = innerTL
-		self.borderLayer.borderTopRightInnerRadius = innerTR
-		self.borderLayer.borderBottomLeftInnerRadius = innerBL
-		self.borderLayer.borderBottomRightInnerRadius = innerBR
+		self.borderLayer.cornerTopLeftInnerRadius = innerTL
+		self.borderLayer.cornerTopRightInnerRadius = innerTR
+		self.borderLayer.cornerBottomLeftInnerRadius = innerBL
+		self.borderLayer.cornerBottomRightInnerRadius = innerBR
 
 		if (self.content is Clippable == false) {
 			return
@@ -808,10 +808,10 @@ open class WrapperView: UIView, Animatable {
 		self.toggleBackgroundImageLayer(self.needsBackgroundImageLayer())
 		self.toggleBorderLayer(self.needsBorderLayer())
 
-		if (self.borderLayer.borderTopLeftInnerRadius != .zero ||
-			self.borderLayer.borderTopRightInnerRadius != .zero ||
-			self.borderLayer.borderBottomLeftInnerRadius != .zero ||
-			self.borderLayer.borderBottomRightInnerRadius != .zero) {
+		if (self.borderLayer.cornerTopLeftInnerRadius != .zero ||
+			self.borderLayer.cornerTopRightInnerRadius != .zero ||
+			self.borderLayer.cornerBottomLeftInnerRadius != .zero ||
+			self.borderLayer.cornerBottomRightInnerRadius != .zero) {
 			self.content.layer.shouldRasterize = true
 			return
 		}
