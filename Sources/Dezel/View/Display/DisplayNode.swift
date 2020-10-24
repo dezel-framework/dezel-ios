@@ -310,11 +310,11 @@ open class DisplayNode {
 
 	/**
 	 * Make the display node opaque.
-	 * @method setOpaque
-	 * @since 0.1.0
+	 * @method setSealed
+	 * @since 0.2.0
 	 */
-	public func setOpaque() {
-		DisplayNodeSetOpaque(self.handle)
+	public func setSealed() {
+		DisplayNodeSetSealed(self.handle)
 	}
 
 	/**

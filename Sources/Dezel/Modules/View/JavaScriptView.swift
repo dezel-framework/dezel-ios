@@ -6018,12 +6018,12 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	}
 
 	/**
-	 * @method jsFunction_setOpaque
-	 * @since 0.1.0
+	 * @method jsFunction_setSealed
+	 * @since 0.2.0
 	 * @hidden
 	 */
-	@objc open func jsFunction_setOpaque(callback: JavaScriptFunctionCallback) {
-		self.node.setOpaque()
+	@objc open func jsFunction_setSealed(callback: JavaScriptFunctionCallback) {
+		self.node.setSealed()
 	}
 
 	/**
