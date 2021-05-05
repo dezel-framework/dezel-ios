@@ -24,7 +24,7 @@ open class DisplayNode {
 	 * @since 0.1.0
 	 */
 	private(set) public var display: Display
-
+            
 	/**
 	 * The display node's measured top.
 	 * @property measuredTop
@@ -309,14 +309,32 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Make the display node opaque.
+	 * Make the display node sealed.
 	 * @method setSealed
 	 * @since 0.2.0
 	 */
 	public func setSealed() {
 		DisplayNodeSetSealed(self.handle)
 	}
-
+    
+    /**
+     * Sets the display node's root.
+     * @method setRoot
+     * @since 0.2.0
+     */
+    public func setRoot(_ root: DisplayNode?) {
+        DisplayNodeSetRoot(self.handle, root?.handle)
+    }
+    
+    /**
+     * Sets the display node's host.
+     * @method setHost
+     * @since 0.2.0
+     */
+    public func setHost(_ host: DisplayNode?) {
+        DisplayNodeSetHost(self.handle, host?.handle)
+    }
+    
 	/**
 	 * Assigns the display node's name.
 	 * @method setName
@@ -334,7 +352,7 @@ open class DisplayNode {
 	public func setType(_ type: String) {
 		DisplayNodeSetType(self.handle, type)
 	}
-
+    
 	/**
 	 * Appends a display node style.
 	 * @method appendStyle
