@@ -79,11 +79,11 @@ open class JavaScriptBitmap: JavaScriptClass {
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @property source
+	 * @property path
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var source = JavaScriptProperty() { value in
+	@objc open lazy var path = JavaScriptProperty() { value in
 		self.load(value.string)
 	}
 
@@ -126,21 +126,21 @@ open class JavaScriptBitmap: JavaScriptClass {
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_source
+	 * @method jsGet_path
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_source(callback: JavaScriptGetterCallback) {
-		callback.returns(self.source)
+	@objc open func jsGet_path(callback: JavaScriptGetterCallback) {
+		callback.returns(self.path)
 	}
 
 	/**
-	 * @method jsSet_source
+	 * @method jsSet_path
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_source(callback: JavaScriptSetterCallback) {
-		self.source.reset(callback.value, lock: self)
+	@objc open func jsSet_path(callback: JavaScriptSetterCallback) {
+		self.path.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------
