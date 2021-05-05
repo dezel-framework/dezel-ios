@@ -197,6 +197,17 @@ open class JavaScriptApplication: JavaScriptClass {
 	//--------------------------------------------------------------------------
 
 	/**
+	 * @method jsStaticFunction_register
+	 * @since 0.2.0
+	 * @hidden
+	 */
+	@objc class func jsStaticFunction_register(callback: JavaScriptFunctionCallback) {
+		if let application = callback.argument(0).cast(JavaScriptApplication.self) {
+			callback.context.controller.register(application: application)
+		}
+	}
+
+	/**
 	 * @method jsFunction_destroy
 	 * @since 0.1.0
 	 * @hidden

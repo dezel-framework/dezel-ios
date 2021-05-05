@@ -229,7 +229,7 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 	 * @since 0.1.0
 	 */
 	override open func viewDidLoad() {
-
+        
 		self.view.isHidden = false
 		self.view.isOpaque = true
 		self.view.backgroundColor = UIColor.black
@@ -274,7 +274,6 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 
 		self.configure()
 
-		self.modules.append(JavaScriptUtilModule())
 		self.modules.append(JavaScriptGlobalModule())
 		self.modules.append(JavaScriptPlatformModule())
 		self.modules.append(JavaScriptLocaleModule())
@@ -294,7 +293,7 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		}
 
 		self.loaded = true
-
+        
 		self.launch()
 	}
 
@@ -951,7 +950,7 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 		guard let application = self.application else {
 			return
 		}
-
+                
 		self.display.window = application.window.node
 
 		application.window.width.reset(Double(UIScreen.main.bounds.width), unit: .px, lock: self)

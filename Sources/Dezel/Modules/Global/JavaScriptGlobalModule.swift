@@ -84,6 +84,11 @@ open class JavaScriptGlobalModule : JavaScriptModule {
 		context.global.defineProperty("location", value: context.createObject(JavaScriptLocation.self))
 		context.global.defineProperty("navigator", value: context.createObject(JavaScriptNavigator.self))
 
+        context.global.defineProperty("importClass", value: context.createFunction(self.importClass))
+        context.global.defineProperty("importObject", value: context.createFunction(self.importObject))
+        context.global.defineProperty("reload", value: context.createFunction(self.reload))
+        context.global.defineProperty("reloadStyles", value: context.createFunction(self.reloadStyles))
+        
 		context.global.defineProperty("setImmediate", value: context.createFunction(self.setImmediate))
 		context.global.defineProperty("setInterval", value: context.createFunction(self.setInterval))
 		context.global.defineProperty("setTimeout", value: context.createFunction(self.setTimeout))
@@ -122,6 +127,47 @@ open class JavaScriptGlobalModule : JavaScriptModule {
 	// MARK: Function Callbacks
 	//--------------------------------------------------------------------------
 
+    
+    /**
+     * @property importClass
+     * @since 0.1.0
+     * @hidden
+     */
+    private func importClass(callback: JavaScriptFunctionCallback) {
+        if let result = callback.context.classes[callback.argument(0).string] {
+            callback.returns(result)
+        }
+    }
+
+    /**
+     * @property importObject
+     * @since 0.1.0
+     * @hidden
+     */
+    private func importObject(callback: JavaScriptFunctionCallback) {
+        if let result = callback.context.objects[callback.argument(0).string] {
+            callback.returns(result)
+        }
+    }
+    
+    /**
+     * @property reload
+     * @since 0.1.0
+     * @hidden
+     */
+    private func reload(callback: JavaScriptFunctionCallback) {
+        callback.context.controller.reload()
+    }
+    
+    /**
+     * @property reloadStyles
+     * @since 0.1.0
+     * @hidden
+     */
+    private func reloadStyles(callback: JavaScriptFunctionCallback) {
+        callback.context.controller.reloadStyles()
+    }
+    
 	/**
 	 * @method setImmediate
 	 * @since 0.1.0
