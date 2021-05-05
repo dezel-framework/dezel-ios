@@ -2,7 +2,7 @@
  * @protocol SynchronizerCallback
  * @since 0.1.0
  */
-public protocol SynchronizerCallback : class {
+public protocol SynchronizerCallback : AnyObject {
 
 	/**
 	 * Called when the synchronizer is ready to update.

@@ -4,7 +4,7 @@ import UIKit
  * @protocol TextViewObserver
  * @since 0.1.0
  */
-public protocol TextViewObserver: class {
+public protocol TextViewObserver: AnyObject {
 
 	/**
 	 * Called when a link is pressed.
