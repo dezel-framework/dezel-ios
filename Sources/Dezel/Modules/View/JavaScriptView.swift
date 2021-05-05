@@ -38,21 +38,21 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 */
 	private(set) public var content: UIView!
-
+    
 	/**
 	 * The view's window.
 	 * @property window
 	 * @since 0.1.0
 	 */
 	private(set) public var window: JavaScriptWindow?
-
+    
 	/**
 	 * The view's parent.
 	 * @property parent
 	 * @since 0.1.0
 	 */
 	private(set) public var parent: JavaScriptView?
-
+    
 	/**
 	 * The view's children.
 	 * @property children
@@ -60,6 +60,28 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 */
 	private(set) public var children: [JavaScriptView] = []
 
+    /**
+     * The view's root.
+     * @property root
+     * @since 0.1.0
+     */
+    private(set) public var root: JavaScriptView? {
+        willSet {
+            self.node.setRoot(newValue?.node)
+        }
+    }
+    
+    /**
+     * The view's host.
+     * @property root
+     * @since 0.1.0
+     */
+    private(set) public var host: JavaScriptView? {
+        willSet {
+            self.node.setHost(newValue?.node)
+        }
+    }
+    
 	/**
 	 * The view's resolved top position.
 	 * @property resolvedTop
@@ -436,6 +458,25 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		self.insertChild(view, at: index)
 	}
 
+    /**
+     * Assigns the current view as the child view's host.
+     * @method attach
+     * @since 0.1.0
+     */
+    open func attach(_ view: JavaScriptView) {
+        view.host = self
+    }
+    
+    /**
+     * Unassign the current view as the child view's host.
+     * @method detach
+     * @since 0.1.0
+     */
+    open func detach(_ view: JavaScriptView) {
+        view.host = nil
+        view.root = nil
+    }
+    
 	/**
 	 * Measures the view's intrinsic size.
 	 * @method measure
@@ -2980,9 +3021,9 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsGet_parent(callback: JavaScriptGetterCallback) {
-		callback.returns(self.parent)
+        callback.returns(self.host != nil ? self.host : self.parent)
 	}
-
+    
 	//--------------------------------------------------------------------------
 
 	/**
@@ -6035,6 +6076,42 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		self.dispose()
 	}
 
+    /**
+     * @method jsFunction_attach
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsFunction_attach(callback: JavaScriptFunctionCallback) {
+        
+        if (callback.arguments < 1) {
+            fatalError("Method JavaScriptView.attach() requires 1 argument.")
+        }
+
+        let child = callback.argument(0)
+
+        if let child = child.cast(JavaScriptView.self) {
+            self.attach(child)
+        }
+    }
+    
+    /**
+     * @method jsFunction_detach
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsFunction_detach(callback: JavaScriptFunctionCallback) {
+        
+        if (callback.arguments < 1) {
+            fatalError("Method JavaScriptView.detach() requires 1 argument.")
+        }
+
+        let child = callback.argument(0)
+
+        if let child = child.cast(JavaScriptView.self) {
+            self.detach(child)
+        }
+    }
+    
 	/**
 	 * @method jsFunction_insert
 	 * @since 0.1.0
@@ -6071,7 +6148,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 			self.remove(child)
 		}
 	}
-
+ 
 	/**
 	 * @method jsFunction_appendStyle
 	 * @since 0.1.0
@@ -6175,20 +6252,20 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	}
 
 	/**
-	 * @method jsFunction_measure
+	 * @method jsFunction_measureIfNeeded
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsFunction_measure(callback: JavaScriptFunctionCallback) {
+	@objc open func jsFunction_measureIfNeeded(callback: JavaScriptFunctionCallback) {
 		self.measure()
 	}
 
 	/**
-	 * @method jsFunction_resolve
+	 * @method jsFunction_resolveIfNeeded
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsFunction_resolve(callback: JavaScriptFunctionCallback) {
+	@objc open func jsFunction_resolveIfNeeded(callback: JavaScriptFunctionCallback) {
 		self.resolve()
 	}
 
@@ -6225,7 +6302,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
  * @since 0.1.0
  * @hidden
  */
-public protocol JavaScriptViewDelegate: class {
+public protocol JavaScriptViewDelegate: AnyObject {
 	func didPrepareLayout(view: JavaScriptView)
 	func didResolveLayout(view: JavaScriptView)
 	func didScroll(view: JavaScriptView)
