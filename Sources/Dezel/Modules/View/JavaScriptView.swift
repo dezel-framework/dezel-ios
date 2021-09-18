@@ -39,6 +39,28 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 */
 	private(set) public var content: UIView!
     
+    /**
+     * The view's root component.
+     * @property root
+     * @since 0.1.0
+     */
+    private(set) public var root: JavaScriptView? {
+        willSet {
+            self.node.setRoot(newValue?.node)
+        }
+    }
+    
+    /**
+     * The view's host component.
+     * @property host
+     * @since 0.1.0
+     */
+    private(set) public var host: JavaScriptView? {
+        willSet {
+            self.node.setHost(newValue?.node)
+        }
+    }
+    
 	/**
 	 * The view's window.
 	 * @property window
@@ -59,29 +81,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @since 0.1.0
 	 */
 	private(set) public var children: [JavaScriptView] = []
-
-    /**
-     * The view's root.
-     * @property root
-     * @since 0.1.0
-     */
-    private(set) public var root: JavaScriptView? {
-        willSet {
-            self.node.setRoot(newValue?.node)
-        }
-    }
-    
-    /**
-     * The view's host.
-     * @property root
-     * @since 0.1.0
-     */
-    private(set) public var host: JavaScriptView? {
-        willSet {
-            self.node.setHost(newValue?.node)
-        }
-    }
-    
+        
 	/**
 	 * The view's resolved top position.
 	 * @property resolvedTop
@@ -420,6 +420,15 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 
 		self.insertChild(view, at: index)
 	}
+    
+    /**
+     * Updates a child view without notifications.
+     * @method update
+     * @since 0.1.0
+     */
+    open func update(_ view: JavaScriptView, at index: Int) {
+        self.updateChild(view, at: index)
+    }
 
 	/**
 	 * Removes a child view from the view.
@@ -457,25 +466,6 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 
 		self.insertChild(view, at: index)
 	}
-
-    /**
-     * Assigns the current view as the child view's host.
-     * @method attach
-     * @since 0.1.0
-     */
-    open func attach(_ view: JavaScriptView) {
-        view.host = self
-    }
-    
-    /**
-     * Unassign the current view as the child view's host.
-     * @method detach
-     * @since 0.1.0
-     */
-    open func detach(_ view: JavaScriptView) {
-        view.host = nil
-        view.root = nil
-    }
     
 	/**
 	 * Measures the view's intrinsic size.
@@ -1017,10 +1007,10 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 
 	/**
 	 * @inherited
-	 * @method didResolveOrigin
+	 * @method didResolvePosition
 	 * @since 0.1.0
 	 */
-	open func didResolveOrigin(node: DisplayNode) {
+	open func didResolvePosition(node: DisplayNode) {
 
 		if (self.resolvedTop != self.node.measuredTop) {
 			self.resolvedTop = self.node.measuredTop
@@ -1074,13 +1064,22 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 			self.invalidateContent()
 		}
 	}
+	
+	/**
+	 * @inherited
+	 * @method didResolveContentPosition
+	 * @since 0.1.0
+	 */
+	open func didResolveContentPosition(node: DisplayNode) {
+		// TODO
+	}
 
 	/**
 	 * @inherited
-	 * @method didResolveMargins
+	 * @method didResolveMargin
 	 * @since 0.1.0
 	 */
-	open func didResolveMargins(node: DisplayNode) {
+	open func didResolveMargin(node: DisplayNode) {
 
 		if (self.resolvedMarginTop != self.node.measuredMarginTop) {
 			self.resolvedMarginTop = self.node.measuredMarginTop
@@ -1105,10 +1104,10 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 
 	/**
 	 * @inherited
-	 * @method didResolveBorders
+	 * @method didResolveBorder
 	 * @since 0.1.0
 	 */
-	open func didResolveBorders(node: DisplayNode) {
+	open func didResolveBorder(node: DisplayNode) {
 
 		if (self.resolvedBorderTopWidth != self.node.measuredBorderTop) {
 			self.resolvedBorderTopWidth = self.node.measuredBorderTop
@@ -1305,6 +1304,50 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		self.content.insertSubview(view.wrapper, at: index)
 		self.node.insertChild(view.node, at: index)
 	}
+    
+    /**
+     * @method updateChild
+     * @since 0.1.0
+     * @hidden
+     */
+    private func updateChild(_ view: JavaScriptView, at index: Int) {
+        
+        if self.children.contains(view) {
+            
+            /*
+             * The view already exists, just change its index
+             * within its parent.
+             */
+            
+            self.children.remove(view)
+            self.children.insert(view, at: index)
+            
+            self.content.removeSubview(view.wrapper)
+            self.content.insertSubview(view.wrapper, at: index)
+            
+            self.node.removeChild(view.node)
+            self.node.insertChild(view.node, at: index)
+            
+        } else {
+            
+            /*
+             * The view already exists, replace the view at the
+             * specified index with the new one
+             */
+            
+            let repl = self.children[index]
+            
+            self.children.remove(repl)
+            self.children.insert(view, at: index)
+            
+            self.content.removeSubview(repl.wrapper)
+            self.content.insertSubview(view.wrapper, at: index)
+            
+            self.node.removeChild(repl.node)
+            self.node.insertChild(view.node, at: index)
+            
+        }
+    }
 
 	/**
 	 * @method removeChild
@@ -1316,7 +1359,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		self.content.removeSubview(view.wrapper)
 		self.node.removeChild(view.node)
 	}
-
+    
 	/**
 	 * @method moveToParent
 	 * @since 0.1.0
@@ -2179,21 +2222,21 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	}
 
 	/**
-	 * @property expandFactor
+	 * @property expandRatio
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var expandFactor = JavaScriptProperty(number: 0) { value in
-		self.node.setExpandFactor(value.number)
+	@objc open lazy var expandRatio = JavaScriptProperty(number: 0) { value in
+		self.node.setExpandRatio(value.number)
 	}
 
 	/**
-	 * @property shrinkFactor
+	 * @property shrinkRatio
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open lazy var shrinkFactor = JavaScriptProperty(number: 0) { value in
-		self.node.setShrinkFactor(value.number)
+	@objc open lazy var shrinkRatio = JavaScriptProperty(number: 0) { value in
+		self.node.setShrinkRatio(value.number)
 	}
 
 	/**
@@ -3021,8 +3064,62 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 * @hidden
 	 */
 	@objc open func jsGet_parent(callback: JavaScriptGetterCallback) {
-        callback.returns(self.host != nil ? self.host : self.parent)
+        callback.returns(self.parent)
 	}
+    
+    //--------------------------------------------------------------------------
+
+    /**
+     * @method jsGet_root
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsGet_root(callback: JavaScriptGetterCallback) {
+        callback.returns(self.root)
+    }
+
+    /**
+     * @method jsSet_root
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsSet_root(callback: JavaScriptSetterCallback) {
+        
+        if (callback.value.isNull ||
+            callback.value.isUndefined) {
+            self.root = nil
+            return
+        }
+        
+        self.root = callback.value.cast(JavaScriptView.self)
+    }
+    
+    //--------------------------------------------------------------------------
+
+    /**
+     * @method jsGet_host
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsGet_host(callback: JavaScriptGetterCallback) {
+        callback.returns(self.host)
+    }
+
+    /**
+     * @method jsSet_host
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsSet_host(callback: JavaScriptSetterCallback) {
+        
+        if (callback.value.isNull ||
+            callback.value.isUndefined) {
+            self.host = nil
+            return
+        }
+        
+        self.host = callback.value.cast(JavaScriptView.self)
+    }
     
 	//--------------------------------------------------------------------------
 
@@ -4215,41 +4312,41 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_expandFactor
+	 * @method jsGet_expandRatio
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_expandFactor(callback: JavaScriptGetterCallback) {
-		callback.returns(self.expandFactor)
+	@objc open func jsGet_expandRatio(callback: JavaScriptGetterCallback) {
+		callback.returns(self.expandRatio)
 	}
 
 	/**
-	 * @method jsSet_expandFactor
+	 * @method jsSet_expandRatio
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_expandFactor(callback: JavaScriptSetterCallback) {
-		self.expandFactor.reset(callback.value, lock: self)
+	@objc open func jsSet_expandRatio(callback: JavaScriptSetterCallback) {
+		self.expandRatio.reset(callback.value, lock: self)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_shrinkFactor
+	 * @method jsGet_shrinkRatio
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsGet_shrinkFactor(callback: JavaScriptGetterCallback) {
-		callback.returns(self.shrinkFactor)
+	@objc open func jsGet_shrinkRatio(callback: JavaScriptGetterCallback) {
+		callback.returns(self.shrinkRatio)
 	}
 
 	/**
-	 * @method shrinkFactor
+	 * @method jsSet_shrinkRatio
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	@objc open func jsSet_shrinkFactor(callback: JavaScriptSetterCallback) {
-		self.shrinkFactor.reset(callback.value, lock: self)
+	@objc open func jsSet_shrinkRatio(callback: JavaScriptSetterCallback) {
+		self.shrinkRatio.reset(callback.value, lock: self)
 	}
 	//--------------------------------------------------------------------------
 
@@ -6059,15 +6156,6 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	}
 
 	/**
-	 * @method jsFunction_setSealed
-	 * @since 0.2.0
-	 * @hidden
-	 */
-	@objc open func jsFunction_setSealed(callback: JavaScriptFunctionCallback) {
-		self.node.setSealed()
-	}
-
-	/**
 	 * @method jsFunction_destroy
 	 * @since 0.1.0
 	 * @hidden
@@ -6075,42 +6163,6 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	@objc open func jsFunction_destroy(callback: JavaScriptFunctionCallback) {
 		self.dispose()
 	}
-
-    /**
-     * @method jsFunction_attach
-     * @since 0.1.0
-     * @hidden
-     */
-    @objc open func jsFunction_attach(callback: JavaScriptFunctionCallback) {
-        
-        if (callback.arguments < 1) {
-            fatalError("Method JavaScriptView.attach() requires 1 argument.")
-        }
-
-        let child = callback.argument(0)
-
-        if let child = child.cast(JavaScriptView.self) {
-            self.attach(child)
-        }
-    }
-    
-    /**
-     * @method jsFunction_detach
-     * @since 0.1.0
-     * @hidden
-     */
-    @objc open func jsFunction_detach(callback: JavaScriptFunctionCallback) {
-        
-        if (callback.arguments < 1) {
-            fatalError("Method JavaScriptView.detach() requires 1 argument.")
-        }
-
-        let child = callback.argument(0)
-
-        if let child = child.cast(JavaScriptView.self) {
-            self.detach(child)
-        }
-    }
     
 	/**
 	 * @method jsFunction_insert
@@ -6131,6 +6183,25 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 		}
 	}
 
+    /**
+     * @method jsFunction_update
+     * @since 0.1.0
+     * @hidden
+     */
+    @objc open func jsFunction_update(callback: JavaScriptFunctionCallback) {
+        
+        if (callback.arguments < 2) {
+            fatalError("Method JavaScriptView.update() requires 2 arguments.")
+        }
+
+        let child = callback.argument(0)
+        let index = callback.argument(1).number
+
+        if let child = child.cast(JavaScriptView.self) {
+            self.update(child, at: index.toInt())
+        }
+    }
+    
 	/**
 	 * @method jsFunction_remove
 	 * @since 0.1.0
@@ -6148,7 +6219,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 			self.remove(child)
 		}
 	}
- 
+    
 	/**
 	 * @method jsFunction_appendStyle
 	 * @since 0.1.0

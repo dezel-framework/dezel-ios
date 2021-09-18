@@ -22,10 +22,10 @@ public protocol DisplayNodeDelegate: AnyObject {
 
 	/**
 	 * Called when the display node resolves its origin.
-	 * @method didResolveOrigin
+	 * @method didResolvePosition
 	 * @since 0.1.0
 	 */
-	func didResolveOrigin(node: DisplayNode)
+	func didResolvePosition(node: DisplayNode)
 
 	/**
 	 * Called when the display node resolves its inner size.
@@ -42,18 +42,25 @@ public protocol DisplayNodeDelegate: AnyObject {
 	func didResolveContentSize(node: DisplayNode)
 
 	/**
-	 * Called when the display node resolves its margin.
-	 * @method didResolveMargins
+	 * Called when the display node resolves its content position.
+	 * @method didResolveContentPosition
 	 * @since 0.1.0
 	 */
-	func didResolveMargins(node: DisplayNode)
+	func didResolveContentPosition(node: DisplayNode)
+	
+	/**
+	 * Called when the display node resolves its margin.
+	 * @method didResolveMargin
+	 * @since 0.1.0
+	 */
+	func didResolveMargin(node: DisplayNode)
 
 	/**
 	 * Called when the display node resolves its border.
-	 * @method didResolveBorders
+	 * @method didResolveBorder
 	 * @since 0.1.0
 	 */
-	func didResolveBorders(node: DisplayNode)
+	func didResolveBorder(node: DisplayNode)
 
 	/**
 	 * Called when the display node resolves its padding.

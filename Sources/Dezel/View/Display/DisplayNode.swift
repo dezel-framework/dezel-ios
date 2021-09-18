@@ -288,8 +288,9 @@ open class DisplayNode {
 		DisplayNodeSetResolveOriginCallback(self.handle, displayNodeResolveOriginCallback)
 		DisplayNodeSetResolveInnerSizeCallback(self.handle, displayNodeResolveInnerSizeCallback)
 		DisplayNodeSetResolveContentSizeCallback(self.handle, displayNodeResolveContentSizeCallback)
-		DisplayNodeSetResolveMarginsCallback(self.handle, displayNodeResolveMarginsCallback)
-		DisplayNodeSetResolveBordersCallback(self.handle, displayNodeResolveBordersCallback)
+		DisplayNodeSetResolveContentPositionCallback(self.handle, displayNodeResolveContentPositionCallback)
+		DisplayNodeSetResolveMarginCallback(self.handle, displayNodeResolveMarginCallback)
+		DisplayNodeSetResolveBorderCallback(self.handle, displayNodeResolveBorderCallback)
 		DisplayNodeSetResolvePaddingCallback(self.handle, displayNodeResolvePaddingCallback)
 		DisplayNodeSetPrepareLayoutCallback(self.handle, displayNodePrepareLayoutCallback)
 		DisplayNodeSetResolveLayoutCallback(self.handle, displayNodeResolveLayoutCallback)
@@ -308,15 +309,6 @@ open class DisplayNode {
 		DisplayNodeDelete(self.handle)
 	}
 
-	/**
-	 * Make the display node sealed.
-	 * @method setSealed
-	 * @since 0.2.0
-	 */
-	public func setSealed() {
-		DisplayNodeSetSealed(self.handle)
-	}
-    
     /**
      * Sets the display node's root.
      * @method setRoot
@@ -417,9 +409,9 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "top":    self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: 0)
-				case "center": self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: 50)
-				case "bottom": self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: 100)
+				case "top":    self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: 0)
+				case "center": self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: 50)
+				case "bottom": self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: 100)
 				default: break
 			}
 
@@ -430,15 +422,15 @@ open class DisplayNode {
 
 			switch (value.unit) {
 
-				case .px: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPX, length: value.number)
-				case .pc: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: value.number)
-				case .vw: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitVW, length: value.number)
-				case .vh: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitVH, length: value.number)
-				case .pw: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPW, length: value.number)
-				case .ph: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPH, length: value.number)
-				case .cw: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitCW, length: value.number)
-				case .ch: self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitCH, length: value.number)
-				default:  self.setAnchorTop(type: kAnchorTypeLength, unit: kAnchorUnitPX, length: value.number)
+				case .px: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPX, length: value.number)
+				case .pc: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: value.number)
+				case .vw: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitVW, length: value.number)
+				case .vh: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitVH, length: value.number)
+				case .pw: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPW, length: value.number)
+				case .ph: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPH, length: value.number)
+				case .cw: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitCW, length: value.number)
+				case .ch: self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitCH, length: value.number)
+				default:  self.setAnchorTop(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPX, length: value.number)
 
 			}
 
@@ -453,7 +445,7 @@ open class DisplayNode {
 	 * @method setAnchorTop
 	 * @since 0.1.0
 	 */
-	public func setAnchorTop(type: AnchorType, unit: AnchorUnit, length: Double) {
+	public func setAnchorTop(type: DisplayNodeAnchorType, unit: DisplayNodeAnchorUnit, length: Double) {
 		DisplayNodeSetAnchorTop(self.handle, type, unit, length)
 	}
 
@@ -467,9 +459,9 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "left":   self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: 0)
-				case "center": self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: 50)
-				case "right":  self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: 100)
+				case "left":   self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: 0)
+				case "center": self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: 50)
+				case "right":  self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: 100)
 				default: break
 			}
 
@@ -480,15 +472,15 @@ open class DisplayNode {
 
 			switch (value.unit) {
 
-				case .px: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPX, length: value.number)
-				case .pc: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPC, length: value.number)
-				case .vw: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitVW, length: value.number)
-				case .vh: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitVH, length: value.number)
-				case .pw: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPW, length: value.number)
-				case .ph: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPH, length: value.number)
-				case .cw: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitCW, length: value.number)
-				case .ch: self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitCH, length: value.number)
-				default:  self.setAnchorLeft(type: kAnchorTypeLength, unit: kAnchorUnitPX, length: value.number)
+				case .px: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPX, length: value.number)
+				case .pc: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPC, length: value.number)
+				case .vw: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitVW, length: value.number)
+				case .vh: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitVH, length: value.number)
+				case .pw: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPW, length: value.number)
+				case .ph: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPH, length: value.number)
+				case .cw: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitCW, length: value.number)
+				case .ch: self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitCH, length: value.number)
+				default:  self.setAnchorLeft(type: kDisplayNodeAnchorTypeLength, unit: kDisplayNodeAnchorUnitPX, length: value.number)
 			}
 
 			return
@@ -502,7 +494,7 @@ open class DisplayNode {
 	 * @method setAnchorLeft
 	 * @since 0.1.0
 	 */
-	public func setAnchorLeft(type: AnchorType, unit: AnchorUnit, length: Double) {
+	public func setAnchorLeft(type: DisplayNodeAnchorType, unit: DisplayNodeAnchorUnit, length: Double) {
 		DisplayNodeSetAnchorLeft(self.handle, type, unit, length)
 	}
 
@@ -516,7 +508,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "auto": self.setTop(type: kOriginTypeAuto, unit: kOriginUnitNone, length: 0)
+				case "auto": self.setTop(type: kDisplayNodePositionTypeAuto, unit: kDisplayNodePositionUnitNone, length: 0)
 				default: break
 			}
 
@@ -526,15 +518,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setTop(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
-				case .pc: self.setTop(type: kOriginTypeLength, unit: kOriginUnitPC, length: value.number)
-				case .vw: self.setTop(type: kOriginTypeLength, unit: kOriginUnitVW, length: value.number)
-				case .vh: self.setTop(type: kOriginTypeLength, unit: kOriginUnitVH, length: value.number)
-				case .pw: self.setTop(type: kOriginTypeLength, unit: kOriginUnitPW, length: value.number)
-				case .ph: self.setTop(type: kOriginTypeLength, unit: kOriginUnitPH, length: value.number)
-				case .cw: self.setTop(type: kOriginTypeLength, unit: kOriginUnitCW, length: value.number)
-				case .ch: self.setTop(type: kOriginTypeLength, unit: kOriginUnitCH, length: value.number)
-				default:  self.setTop(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
+				case .px: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
+				case .pc: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPC, length: value.number)
+				case .vw: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVW, length: value.number)
+				case .vh: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVH, length: value.number)
+				case .pw: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPW, length: value.number)
+				case .ph: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPH, length: value.number)
+				case .cw: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCW, length: value.number)
+				case .ch: self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCH, length: value.number)
+				default:  self.setTop(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
 			}
 
 			return
@@ -548,7 +540,7 @@ open class DisplayNode {
 	 * @method setTop
 	 * @since 0.1.0
 	 */
-	public func setTop(type: OriginType, unit: OriginUnit, length: Double) {
+	public func setTop(type: DisplayNodePositionType, unit: DisplayNodePositionUnit, length: Double) {
 		DisplayNodeSetTop(self.handle, type, unit, length)
 	}
 
@@ -580,7 +572,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "auto": self.setLeft(type: kOriginTypeAuto, unit: kOriginUnitNone, length: 0)
+				case "auto": self.setLeft(type: kDisplayNodePositionTypeAuto, unit: kDisplayNodePositionUnitNone, length: 0)
 				default: break
 			}
 
@@ -590,15 +582,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
-				case .pc: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitPC, length: value.number)
-				case .vw: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitVW, length: value.number)
-				case .vh: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitVH, length: value.number)
-				case .pw: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitPW, length: value.number)
-				case .ph: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitPH, length: value.number)
-				case .cw: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitCW, length: value.number)
-				case .ch: self.setLeft(type: kOriginTypeLength, unit: kOriginUnitCH, length: value.number)
-				default:  self.setLeft(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
+				case .px: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
+				case .pc: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPC, length: value.number)
+				case .vw: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVW, length: value.number)
+				case .vh: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVH, length: value.number)
+				case .pw: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPW, length: value.number)
+				case .ph: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPH, length: value.number)
+				case .cw: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCW, length: value.number)
+				case .ch: self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCH, length: value.number)
+				default:  self.setLeft(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
 			}
 
 			return
@@ -612,7 +604,7 @@ open class DisplayNode {
 	 * @method setLeft
 	 * @since 0.1.0
 	 */
-	public func setLeft(type: OriginType, unit: OriginUnit, length: Double) {
+	public func setLeft(type: DisplayNodePositionType, unit: DisplayNodePositionUnit, length: Double) {
 		DisplayNodeSetLeft(self.handle, type, unit, length)
 	}
 
@@ -644,7 +636,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "auto": self.setRight(type: kOriginTypeAuto, unit: kOriginUnitNone, length: 0)
+				case "auto": self.setRight(type: kDisplayNodePositionTypeAuto, unit: kDisplayNodePositionUnitNone, length: 0)
 				default: break
 			}
 
@@ -654,15 +646,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setRight(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
-				case .pc: self.setRight(type: kOriginTypeLength, unit: kOriginUnitPC, length: value.number)
-				case .vw: self.setRight(type: kOriginTypeLength, unit: kOriginUnitVW, length: value.number)
-				case .vh: self.setRight(type: kOriginTypeLength, unit: kOriginUnitVH, length: value.number)
-				case .pw: self.setRight(type: kOriginTypeLength, unit: kOriginUnitPW, length: value.number)
-				case .ph: self.setRight(type: kOriginTypeLength, unit: kOriginUnitPH, length: value.number)
-				case .cw: self.setRight(type: kOriginTypeLength, unit: kOriginUnitCW, length: value.number)
-				case .ch: self.setRight(type: kOriginTypeLength, unit: kOriginUnitCH, length: value.number)
-				default:  self.setRight(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
+				case .px: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
+				case .pc: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPC, length: value.number)
+				case .vw: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVW, length: value.number)
+				case .vh: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVH, length: value.number)
+				case .pw: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPW, length: value.number)
+				case .ph: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPH, length: value.number)
+				case .cw: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCW, length: value.number)
+				case .ch: self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCH, length: value.number)
+				default:  self.setRight(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
 			}
 
 			return
@@ -676,7 +668,7 @@ open class DisplayNode {
 	 * @method setRight
 	 * @since 0.1.0
 	 */
-	public func setRight(type: OriginType, unit: OriginUnit, length: Double) {
+	public func setRight(type: DisplayNodePositionType, unit: DisplayNodePositionUnit, length: Double) {
 		DisplayNodeSetRight(self.handle, type, unit, length)
 	}
 
@@ -708,7 +700,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "auto": self.setBottom(type: kOriginTypeAuto, unit: kOriginUnitNone, length: 0)
+				case "auto": self.setBottom(type: kDisplayNodePositionTypeAuto, unit: kDisplayNodePositionUnitNone, length: 0)
 				default: break
 			}
 
@@ -718,15 +710,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
-				case .pc: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitPC, length: value.number)
-				case .vw: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitVW, length: value.number)
-				case .vh: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitVH, length: value.number)
-				case .pw: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitPW, length: value.number)
-				case .ph: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitPH, length: value.number)
-				case .cw: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitCW, length: value.number)
-				case .ch: self.setBottom(type: kOriginTypeLength, unit: kOriginUnitCH, length: value.number)
-				default:  self.setBottom(type: kOriginTypeLength, unit: kOriginUnitPX, length: value.number)
+				case .px: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
+				case .pc: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPC, length: value.number)
+				case .vw: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVW, length: value.number)
+				case .vh: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitVH, length: value.number)
+				case .pw: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPW, length: value.number)
+				case .ph: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPH, length: value.number)
+				case .cw: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCW, length: value.number)
+				case .ch: self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitCH, length: value.number)
+				default:  self.setBottom(type: kDisplayNodePositionTypeLength, unit: kDisplayNodePositionUnitPX, length: value.number)
 			}
 
 			return
@@ -740,7 +732,7 @@ open class DisplayNode {
 	 * @method setBottom
 	 * @since 0.1.0
 	 */
-	public func setBottom(type: OriginType, unit: OriginUnit, length: Double) {
+	public func setBottom(type: DisplayNodePositionType, unit: DisplayNodePositionUnit, length: Double) {
 		DisplayNodeSetBottom(self.handle, type, unit, length)
 	}
 
@@ -772,8 +764,8 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "fill": self.setWidth(type: kSizeTypeFill, unit: kSizeUnitNone, length: 0)
-				case "wrap": self.setWidth(type: kSizeTypeWrap, unit: kSizeUnitNone, length: 0)
+				case "fill": self.setWidth(type: kDisplayNodeSizeTypeFill, unit: kDisplayNodeSizeUnitNone, length: 0)
+				case "wrap": self.setWidth(type: kDisplayNodeSizeTypeWrap, unit: kDisplayNodeSizeUnitNone, length: 0)
 				default: break
 			}
 
@@ -783,15 +775,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitPX, length: value.number)
-				case .pc: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitPC, length: value.number)
-				case .vw: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitVW, length: value.number)
-				case .vh: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitVH, length: value.number)
-				case .pw: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitPW, length: value.number)
-				case .ph: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitPH, length: value.number)
-				case .cw: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitVW, length: value.number)
-				case .ch: self.setWidth(type: kSizeTypeLength, unit: kSizeUnitVH, length: value.number)
-				default:  self.setWidth(type: kSizeTypeLength, unit: kSizeUnitPX, length: value.number)
+				case .px: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPX, length: value.number)
+				case .pc: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPC, length: value.number)
+				case .vw: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVW, length: value.number)
+				case .vh: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVH, length: value.number)
+				case .pw: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPW, length: value.number)
+				case .ph: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPH, length: value.number)
+				case .cw: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVW, length: value.number)
+				case .ch: self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVH, length: value.number)
+				default:  self.setWidth(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPX, length: value.number)
 			}
 
 			return
@@ -805,7 +797,7 @@ open class DisplayNode {
 	 * @method setWidth
 	 * @since 0.1.0
 	 */
-	public func setWidth(type: SizeType, unit: SizeUnit, length: Double) {
+	public func setWidth(type: DisplayNodeSizeType, unit: DisplayNodeSizeUnit, length: Double) {
 		DisplayNodeSetWidth(self.handle, type, unit, length)
 	}
 
@@ -837,8 +829,8 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "fill": self.setHeight(type: kSizeTypeFill, unit: kSizeUnitNone, length: 0)
-				case "wrap": self.setHeight(type: kSizeTypeWrap, unit: kSizeUnitNone, length: 0)
+				case "fill": self.setHeight(type: kDisplayNodeSizeTypeFill, unit: kDisplayNodeSizeUnitNone, length: 0)
+				case "wrap": self.setHeight(type: kDisplayNodeSizeTypeWrap, unit: kDisplayNodeSizeUnitNone, length: 0)
 				default: break
 			}
 
@@ -848,15 +840,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitPX, length: value.number)
-				case .pc: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitPC, length: value.number)
-				case .vw: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitVW, length: value.number)
-				case .vh: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitVH, length: value.number)
-				case .pw: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitPW, length: value.number)
-				case .ph: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitPH, length: value.number)
-				case .cw: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitVW, length: value.number)
-				case .ch: self.setHeight(type: kSizeTypeLength, unit: kSizeUnitVH, length: value.number)
-				default:  self.setHeight(type: kSizeTypeLength, unit: kSizeUnitPX, length: value.number)
+				case .px: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPX, length: value.number)
+				case .pc: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPC, length: value.number)
+				case .vw: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVW, length: value.number)
+				case .vh: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVH, length: value.number)
+				case .pw: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPW, length: value.number)
+				case .ph: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPH, length: value.number)
+				case .cw: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVW, length: value.number)
+				case .ch: self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitVH, length: value.number)
+				default:  self.setHeight(type: kDisplayNodeSizeTypeLength, unit: kDisplayNodeSizeUnitPX, length: value.number)
 			}
 
 			return
@@ -870,7 +862,7 @@ open class DisplayNode {
 	 * @method setHeight
 	 * @since 0.1.0
 	 */
-	public func setHeight(type: SizeType, unit: SizeUnit, length: Double) {
+	public func setHeight(type: DisplayNodeSizeType, unit: DisplayNodeSizeUnit, length: Double) {
 		DisplayNodeSetHeight(self.handle, type, unit, length)
 	}
 
@@ -902,8 +894,8 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "horizontal": self.setContentDirection(kContentDirectionHorizontal)
-				case "vertical":   self.setContentDirection(kContentDirectionVertical)
+				case "horizontal": self.setContentDirection(kDisplayNodeContentDirectionHorizontal)
+				case "vertical":   self.setContentDirection(kDisplayNodeContentDirectionVertical)
 				default: break
 			}
 
@@ -918,7 +910,7 @@ open class DisplayNode {
 	 * @method setContentDirection
 	 * @since 0.1.0
 	 */
-	public func setContentDirection(_ direction: ContentDirection) {
+	public func setContentDirection(_ direction: DisplayNodeContentDirection) {
 		DisplayNodeSetContentDirection(self.handle, direction)
 	}
 
@@ -932,9 +924,9 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "center": self.setContentAlignment(kContentAlignmentCenter)
-				case "start":  self.setContentAlignment(kContentAlignmentStart)
-				case "end":    self.setContentAlignment(kContentAlignmentEnd)
+				case "center": self.setContentAlignment(kDisplayNodeContentAlignmentCenter)
+				case "start":  self.setContentAlignment(kDisplayNodeContentAlignmentStart)
+				case "end":    self.setContentAlignment(kDisplayNodeContentAlignmentEnd)
 				default: break
 			}
 
@@ -949,7 +941,7 @@ open class DisplayNode {
 	 * @method setContentAlignment
 	 * @since 0.1.0
 	 */
-	public func setContentAlignment(_ contentAlignment: ContentAlignment) {
+	public func setContentAlignment(_ contentAlignment: DisplayNodeContentAlignment) {
 		DisplayNodeSetContentAlignment(self.handle, contentAlignment)
 	}
 
@@ -963,12 +955,12 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "center":        self.setContentDisposition(kContentDispositionCenter)
-				case "start":         self.setContentDisposition(kContentDispositionStart)
-				case "end":           self.setContentDisposition(kContentDispositionEnd)
-				case "space-around":  self.setContentDisposition(kContentDispositionSpaceAround)
-				case "space-evenly":  self.setContentDisposition(kContentDispositionSpaceEvenly)
-				case "space-between": self.setContentDisposition(kContentDispositionSpaceBetween)
+				case "center":        self.setContentDisposition(kDisplayNodeContentDispositionCenter)
+				case "start":         self.setContentDisposition(kDisplayNodeContentDispositionStart)
+				case "end":           self.setContentDisposition(kDisplayNodeContentDispositionEnd)
+				case "space-around":  self.setContentDisposition(kDisplayNodeContentDispositionSpaceAround)
+				case "space-evenly":  self.setContentDisposition(kDisplayNodeContentDispositionSpaceEvenly)
+				case "space-between": self.setContentDisposition(kDisplayNodeContentDispositionSpaceBetween)
 				default: break
 			}
 
@@ -983,7 +975,7 @@ open class DisplayNode {
 	 * @method setContentDisposition
 	 * @since 0.1.0
 	 */
-	public func setContentDisposition(_ contentDisposition: ContentDisposition) {
+	public func setContentDisposition(_ contentDisposition: DisplayNodeContentDisposition) {
 		DisplayNodeSetContentDisposition(self.handle, contentDisposition)
 	}
 
@@ -997,8 +989,8 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setContentTop(type: kContentOriginTypeLength, unit: kContentOriginUnitPX, length: value.number)
-				default:  self.setContentTop(type: kContentOriginTypeLength, unit: kContentOriginUnitPX, length: value.number)
+				case .px: self.setContentTop(type: kDisplayNodeContentPositionTypeLength, unit: kDisplayNodeContentPositionUnitPX, length: value.number)
+				default:  self.setContentTop(type: kDisplayNodeContentPositionTypeLength, unit: kDisplayNodeContentPositionUnitPX, length: value.number)
 			}
 
 			return
@@ -1012,7 +1004,7 @@ open class DisplayNode {
 	 * @method setContentTop
 	 * @since 0.1.0
 	 */
-	public func setContentTop(type: ContentOriginType, unit: ContentOriginUnit, length: Double) {
+	public func setContentTop(type: DisplayNodeContentPositionType, unit: DisplayNodeContentPositionUnit, length: Double) {
 		DisplayNodeSetContentTop(self.handle, type, unit, length)
 	}
 
@@ -1026,8 +1018,8 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setContentLeft(type: kContentOriginTypeLength, unit: kContentOriginUnitPX, length: value.number)
-				default:  self.setContentLeft(type: kContentOriginTypeLength, unit: kContentOriginUnitPX, length: value.number)
+				case .px: self.setContentLeft(type: kDisplayNodeContentPositionTypeLength, unit: kDisplayNodeContentPositionUnitPX, length: value.number)
+				default:  self.setContentLeft(type: kDisplayNodeContentPositionTypeLength, unit: kDisplayNodeContentPositionUnitPX, length: value.number)
 			}
 
 			return
@@ -1041,7 +1033,7 @@ open class DisplayNode {
 	 * @method setContentLeft
 	 * @since 0.1.0
 	 */
-	public func setContentLeft(type: ContentOriginType, unit: ContentOriginUnit, length: Double) {
+	public func setContentLeft(type: DisplayNodeContentPositionType, unit: DisplayNodeContentPositionUnit, length: Double) {
 		DisplayNodeSetContentLeft(self.handle, type, unit, length)
 	}
 
@@ -1055,7 +1047,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "auto": self.setContentWidth(type: kContentSizeTypeAuto, unit: kContentSizeUnitNone, length: 0)
+				case "auto": self.setContentWidth(type: kDisplayNodeContentSizeTypeAuto, unit: kDisplayNodeContentSizeUnitNone, length: 0)
 				default: break
 			}
 
@@ -1065,15 +1057,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitPX, length: value.number)
-				case .pc: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitPC, length: value.number)
-				case .vw: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitVW, length: value.number)
-				case .vh: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitVH, length: value.number)
-				case .pw: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitPW, length: value.number)
-				case .ph: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitPH, length: value.number)
-				case .cw: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitCW, length: value.number)
-				case .ch: self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitCH, length: value.number)
-				default:  self.setContentWidth(type: kContentSizeTypeLength, unit: kContentSizeUnitPX, length: value.number)
+				case .px: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPX, length: value.number)
+				case .pc: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPC, length: value.number)
+				case .vw: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitVW, length: value.number)
+				case .vh: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitVH, length: value.number)
+				case .pw: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPW, length: value.number)
+				case .ph: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPH, length: value.number)
+				case .cw: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitCW, length: value.number)
+				case .ch: self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitCH, length: value.number)
+				default:  self.setContentWidth(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPX, length: value.number)
 			}
 
 			return
@@ -1087,7 +1079,7 @@ open class DisplayNode {
 	 * @method setContentWidth
 	 * @since 0.1.0
 	 */
-	public func setContentWidth(type: ContentSizeType, unit: ContentSizeUnit, length: Double) {
+	public func setContentWidth(type: DisplayNodeContentSizeType, unit: DisplayNodeContentSizeUnit, length: Double) {
 		DisplayNodeSetContentWidth(self.handle, type, unit, length)
 	}
 
@@ -1101,7 +1093,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "auto": self.setContentHeight(type: kContentSizeTypeAuto, unit: kContentSizeUnitNone, length: 0)
+				case "auto": self.setContentHeight(type: kDisplayNodeContentSizeTypeAuto, unit: kDisplayNodeContentSizeUnitNone, length: 0)
 				default: break
 			}
 
@@ -1111,15 +1103,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitPX, length: value.number)
-				case .pc: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitPC, length: value.number)
-				case .vw: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitVW, length: value.number)
-				case .vh: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitVH, length: value.number)
-				case .pw: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitPW, length: value.number)
-				case .ph: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitPH, length: value.number)
-				case .cw: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitCW, length: value.number)
-				case .ch: self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitCH, length: value.number)
-				default:  self.setContentHeight(type: kContentSizeTypeLength, unit: kContentSizeUnitPX, length: value.number)
+				case .px: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPX, length: value.number)
+				case .pc: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPC, length: value.number)
+				case .vw: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitVW, length: value.number)
+				case .vh: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitVH, length: value.number)
+				case .pw: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPW, length: value.number)
+				case .ph: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPH, length: value.number)
+				case .cw: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitCW, length: value.number)
+				case .ch: self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitCH, length: value.number)
+				default:  self.setContentHeight(type: kDisplayNodeContentSizeTypeLength, unit: kDisplayNodeContentSizeUnitPX, length: value.number)
 			}
 
 			return
@@ -1133,7 +1125,7 @@ open class DisplayNode {
 	 * @method setContentHeight
 	 * @since 0.1.0
 	 */
-	public func setContentHeight(type: ContentSizeType, unit: ContentSizeUnit, length: Double) {
+	public func setContentHeight(type: DisplayNodeContentSizeType, unit: DisplayNodeContentSizeUnit, length: Double) {
 		DisplayNodeSetContentHeight(self.handle, type, unit, length)
 	}
 
@@ -1147,7 +1139,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "thin": self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitPX, length: Double(1 / UIScreen.main.scale))
+				case "thin": self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: Double(1 / UIScreen.main.scale))
 				default: break
 			}
 
@@ -1157,15 +1149,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
-				case .pc: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitPC, length: value.number)
-				case .vw: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .vh: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .pw: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .ph: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .cw: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitCW, length: value.number)
-				case .ch: self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitCH, length: value.number)
-				default:  self.setBorderTop(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
+				case .px: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
+				case .pc: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPC, length: value.number)
+				case .vw: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .vh: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .pw: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .ph: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .cw: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCW, length: value.number)
+				case .ch: self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCH, length: value.number)
+				default:  self.setBorderTop(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
 			}
 
 			return
@@ -1179,7 +1171,7 @@ open class DisplayNode {
 	 * @method setBorderTop
 	 * @since 0.1.0
 	 */
-	public func setBorderTop(type: BorderType, unit: BorderUnit, length: Double) {
+	public func setBorderTop(type: DisplayNodeBorderType, unit: DisplayNodeBorderUnit, length: Double) {
 		DisplayNodeSetBorderTop(self.handle, type, unit, length)
 	}
 
@@ -1193,7 +1185,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "thin": self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitPX, length: Double(1 / UIScreen.main.scale))
+				case "thin": self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: Double(1 / UIScreen.main.scale))
 				default: break
 			}
 
@@ -1203,15 +1195,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
-				case .pc: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitPC, length: value.number)
-				case .vw: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .vh: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .pw: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .ph: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .cw: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitCW, length: value.number)
-				case .ch: self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitCH, length: value.number)
-				default:  self.setBorderLeft(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
+				case .px: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
+				case .pc: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPC, length: value.number)
+				case .vw: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .vh: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .pw: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .ph: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .cw: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCW, length: value.number)
+				case .ch: self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCH, length: value.number)
+				default:  self.setBorderLeft(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
 			}
 
 			return
@@ -1225,7 +1217,7 @@ open class DisplayNode {
 	 * @method setBorderLeft
 	 * @since 0.1.0
 	 */
-	public func setBorderLeft(type: BorderType, unit: BorderUnit, length: Double) {
+	public func setBorderLeft(type: DisplayNodeBorderType, unit: DisplayNodeBorderUnit, length: Double) {
 		DisplayNodeSetBorderLeft(self.handle, type, unit, length)
 	}
 
@@ -1239,7 +1231,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "thin": self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitPX, length: Double(1 / UIScreen.main.scale))
+				case "thin": self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: Double(1 / UIScreen.main.scale))
 				default: break
 			}
 
@@ -1249,15 +1241,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
-				case .pc: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitPC, length: value.number)
-				case .vw: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .vh: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .pw: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .ph: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .cw: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitCW, length: value.number)
-				case .ch: self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitCH, length: value.number)
-				default:  self.setBorderRight(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
+				case .px: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
+				case .pc: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPC, length: value.number)
+				case .vw: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .vh: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .pw: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .ph: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .cw: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCW, length: value.number)
+				case .ch: self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCH, length: value.number)
+				default:  self.setBorderRight(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
 			}
 
 			return
@@ -1271,7 +1263,7 @@ open class DisplayNode {
 	 * @method setBorderRight
 	 * @since 0.1.0
 	 */
-	public func setBorderRight(type: BorderType, unit: BorderUnit, length: Double) {
+	public func setBorderRight(type: DisplayNodeBorderType, unit: DisplayNodeBorderUnit, length: Double) {
 		DisplayNodeSetBorderRight(self.handle, type, unit, length)
 	}
 
@@ -1285,7 +1277,7 @@ open class DisplayNode {
 		if (value.type == .string) {
 
 			switch (value.string) {
-				case "thin": self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitPX, length: Double(1 / UIScreen.main.scale))
+				case "thin": self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: Double(1 / UIScreen.main.scale))
 				default: break
 			}
 
@@ -1295,15 +1287,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
-				case .pc: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitPC, length: value.number)
-				case .vw: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .vh: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .pw: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitVW, length: value.number)
-				case .ph: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitVH, length: value.number)
-				case .cw: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitCW, length: value.number)
-				case .ch: self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitCH, length: value.number)
-				default:  self.setBorderBottom(type: kBorderTypeLength, unit: kBorderUnitPX, length: value.number)
+				case .px: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
+				case .pc: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPC, length: value.number)
+				case .vw: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .vh: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .pw: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVW, length: value.number)
+				case .ph: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitVH, length: value.number)
+				case .cw: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCW, length: value.number)
+				case .ch: self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitCH, length: value.number)
+				default:  self.setBorderBottom(type: kDisplayNodeBorderTypeLength, unit: kDisplayNodeBorderUnitPX, length: value.number)
 			}
 
 			return
@@ -1317,7 +1309,7 @@ open class DisplayNode {
 	 * @method setBorderBottom
 	 * @since 0.1.0
 	 */
-	public func setBorderBottom(type: BorderType, unit: BorderUnit, length: Double) {
+	public func setBorderBottom(type: DisplayNodeBorderType, unit: DisplayNodeBorderUnit, length: Double) {
 		DisplayNodeSetBorderBottom(self.handle, type, unit, length)
 	}
 
@@ -1331,15 +1323,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
-				case .pc: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitPC, length: value.number)
-				case .vw: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .vh: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				case .pw: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitPW, length: value.number)
-				case .ph: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitPH, length: value.number)
-				case .cw: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .ch: self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				default:  self.setMarginTop(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
+				case .px: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
+				case .pc: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPC, length: value.number)
+				case .vw: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .vh: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				case .pw: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPW, length: value.number)
+				case .ph: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPH, length: value.number)
+				case .cw: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .ch: self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				default:  self.setMarginTop(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
 			}
 
 			return
@@ -1353,7 +1345,7 @@ open class DisplayNode {
 	 * @method setMarginTop
 	 * @since 0.1.0
 	 */
-	public func setMarginTop(type: MarginType, unit: MarginUnit, length: Double) {
+	public func setMarginTop(type: DisplayNodeMarginType, unit: DisplayNodeMarginUnit, length: Double) {
 		DisplayNodeSetMarginTop(self.handle, type, unit, length)
 	}
 
@@ -1367,15 +1359,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
-				case .pc: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitPC, length: value.number)
-				case .vw: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .vh: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				case .pw: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitPW, length: value.number)
-				case .ph: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitPH, length: value.number)
-				case .cw: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .ch: self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				default:  self.setMarginLeft(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
+				case .px: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
+				case .pc: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPC, length: value.number)
+				case .vw: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .vh: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				case .pw: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPW, length: value.number)
+				case .ph: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPH, length: value.number)
+				case .cw: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .ch: self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				default:  self.setMarginLeft(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
 			}
 
 			return
@@ -1389,7 +1381,7 @@ open class DisplayNode {
 	 * @method setMarginLeft
 	 * @since 0.1.0
 	 */
-	public func setMarginLeft(type: MarginType, unit: MarginUnit, length: Double) {
+	public func setMarginLeft(type: DisplayNodeMarginType, unit: DisplayNodeMarginUnit, length: Double) {
 		DisplayNodeSetMarginLeft(self.handle, type, unit, length)
 	}
 
@@ -1403,15 +1395,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
-				case .pc: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitPC, length: value.number)
-				case .vw: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .vh: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				case .pw: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitPW, length: value.number)
-				case .ph: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitPH, length: value.number)
-				case .cw: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .ch: self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				default:  self.setMarginRight(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
+				case .px: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
+				case .pc: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPC, length: value.number)
+				case .vw: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .vh: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				case .pw: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPW, length: value.number)
+				case .ph: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPH, length: value.number)
+				case .cw: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .ch: self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				default:  self.setMarginRight(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
 			}
 
 			return
@@ -1425,7 +1417,7 @@ open class DisplayNode {
 	 * @method setMarginRight
 	 * @since 0.1.0
 	 */
-	public func setMarginRight(type: MarginType, unit: MarginUnit, length: Double) {
+	public func setMarginRight(type: DisplayNodeMarginType, unit: DisplayNodeMarginUnit, length: Double) {
 		DisplayNodeSetMarginRight(self.handle, type, unit, length)
 	}
 
@@ -1439,15 +1431,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
-				case .pc: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitPC, length: value.number)
-				case .vw: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .vh: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				case .pw: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitPW, length: value.number)
-				case .ph: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitPH, length: value.number)
-				case .cw: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitVW, length: value.number)
-				case .ch: self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitVH, length: value.number)
-				default:  self.setMarginBottom(type: kMarginTypeLength, unit: kMarginUnitPX, length: value.number)
+				case .px: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
+				case .pc: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPC, length: value.number)
+				case .vw: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .vh: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				case .pw: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPW, length: value.number)
+				case .ph: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPH, length: value.number)
+				case .cw: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVW, length: value.number)
+				case .ch: self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitVH, length: value.number)
+				default:  self.setMarginBottom(type: kDisplayNodeMarginTypeLength, unit: kDisplayNodeMarginUnitPX, length: value.number)
 			}
 
 			return
@@ -1461,7 +1453,7 @@ open class DisplayNode {
 	 * @method setMarginBottom
 	 * @since 0.1.0
 	 */
-	public func setMarginBottom(type: MarginType, unit: MarginUnit, length: Double) {
+	public func setMarginBottom(type: DisplayNodeMarginType, unit: DisplayNodeMarginUnit, length: Double) {
 		DisplayNodeSetMarginBottom(self.handle, type, unit, length)
 	}
 
@@ -1547,15 +1539,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
-				case .pc: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitPC, length: value.number)
-				case .vw: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitVW, length: value.number)
-				case .vh: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitVH, length: value.number)
-				case .pw: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitPW, length: value.number)
-				case .ph: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitPH, length: value.number)
-				case .cw: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitCW, length: value.number)
-				case .ch: self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitCH, length: value.number)
-				default:  self.setPaddingTop(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
+				case .px: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
+				case .pc: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPC, length: value.number)
+				case .vw: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVW, length: value.number)
+				case .vh: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVH, length: value.number)
+				case .pw: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPW, length: value.number)
+				case .ph: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPH, length: value.number)
+				case .cw: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCW, length: value.number)
+				case .ch: self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCH, length: value.number)
+				default:  self.setPaddingTop(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
 			}
 
 			return
@@ -1569,7 +1561,7 @@ open class DisplayNode {
 	 * @method setPaddingTop
 	 * @since 0.1.0
 	 */
-	public func setPaddingTop(type: PaddingType, unit: PaddingUnit, length: Double) {
+	public func setPaddingTop(type: DisplayNodePaddingType, unit: DisplayNodePaddingUnit, length: Double) {
 		DisplayNodeSetPaddingTop(self.handle, type, unit, length)
 	}
 
@@ -1583,15 +1575,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
-				case .pc: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitPC, length: value.number)
-				case .vw: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitVW, length: value.number)
-				case .vh: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitVH, length: value.number)
-				case .pw: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitPW, length: value.number)
-				case .ph: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitPH, length: value.number)
-				case .cw: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitCW, length: value.number)
-				case .ch: self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitCH, length: value.number)
-				default:  self.setPaddingLeft(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
+				case .px: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
+				case .pc: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPC, length: value.number)
+				case .vw: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVW, length: value.number)
+				case .vh: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVH, length: value.number)
+				case .pw: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPW, length: value.number)
+				case .ph: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPH, length: value.number)
+				case .cw: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCW, length: value.number)
+				case .ch: self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCH, length: value.number)
+				default:  self.setPaddingLeft(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
 			}
 
 			return
@@ -1605,7 +1597,7 @@ open class DisplayNode {
 	 * @method setPaddingLeft
 	 * @since 0.1.0
 	 */
-	public func setPaddingLeft(type: PaddingType, unit: PaddingUnit, length: Double) {
+	public func setPaddingLeft(type: DisplayNodePaddingType, unit: DisplayNodePaddingUnit, length: Double) {
 		DisplayNodeSetPaddingLeft(self.handle, type, unit, length)
 	}
 
@@ -1619,15 +1611,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
-				case .pc: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitPC, length: value.number)
-				case .vw: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitVW, length: value.number)
-				case .vh: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitVH, length: value.number)
-				case .pw: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitPW, length: value.number)
-				case .ph: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitPH, length: value.number)
-				case .cw: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitCW, length: value.number)
-				case .ch: self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitCH, length: value.number)
-				default:  self.setPaddingRight(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
+				case .px: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
+				case .pc: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPC, length: value.number)
+				case .vw: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVW, length: value.number)
+				case .vh: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVH, length: value.number)
+				case .pw: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPW, length: value.number)
+				case .ph: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPH, length: value.number)
+				case .cw: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCW, length: value.number)
+				case .ch: self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCH, length: value.number)
+				default:  self.setPaddingRight(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
 			}
 
 			return
@@ -1641,7 +1633,7 @@ open class DisplayNode {
 	 * @method setPaddingRight
 	 * @since 0.1.0
 	 */
-	public func setPaddingRight(type: PaddingType, unit: PaddingUnit, length: Double) {
+	public func setPaddingRight(type: DisplayNodePaddingType, unit: DisplayNodePaddingUnit, length: Double) {
 		DisplayNodeSetPaddingRight(self.handle, type, unit, length)
 	}
 
@@ -1655,15 +1647,15 @@ open class DisplayNode {
 		if (value.type == .number) {
 
 			switch (value.unit) {
-				case .px: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
-				case .pc: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitPC, length: value.number)
-				case .vw: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitVW, length: value.number)
-				case .vh: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitVH, length: value.number)
-				case .pw: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitPW, length: value.number)
-				case .ph: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitPH, length: value.number)
-				case .cw: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitCW, length: value.number)
-				case .ch: self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitCH, length: value.number)
-				default:  self.setPaddingBottom(type: kPaddingTypeLength, unit: kPaddingUnitPX, length: value.number)
+				case .px: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
+				case .pc: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPC, length: value.number)
+				case .vw: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVW, length: value.number)
+				case .vh: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitVH, length: value.number)
+				case .pw: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPW, length: value.number)
+				case .ph: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPH, length: value.number)
+				case .cw: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCW, length: value.number)
+				case .ch: self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitCH, length: value.number)
+				default:  self.setPaddingBottom(type: kDisplayNodePaddingTypeLength, unit: kDisplayNodePaddingUnitPX, length: value.number)
 			}
 
 			return
@@ -1677,7 +1669,7 @@ open class DisplayNode {
 	 * @method setPaddingBottom
 	 * @since 0.1.0
 	 */
-	public func setPaddingBottom(type: PaddingType, unit: PaddingUnit, length: Double) {
+	public func setPaddingBottom(type: DisplayNodePaddingType, unit: DisplayNodePaddingUnit, length: Double) {
 		DisplayNodeSetPaddingBottom(self.handle, type, unit, length)
 	}
 
@@ -1754,21 +1746,21 @@ open class DisplayNode {
 	}
 
 	/**
-	 * Assigns the display node's expand factor.
-	 * @method setExpandFactor
+	 * Assigns the display node's expand ratio.
+	 * @method setExpandRatio
 	 * @since 0.1.0
 	 */
-	public func setExpandFactor(_ factor: Double) {
-		DisplayNodeSetExpandFactor(self.handle, factor)
+	public func setExpandRatio(_ ratio: Double) {
+		DisplayNodeSetExpandRatio(self.handle, ratio)
 	}
 
 	/**
-	 * Assigns the display node's shrink factor.
-	 * @method setShrinkFactor
+	 * Assigns the display node's shrink ratio.
+	 * @method setShrinkRatio
 	 * @since 0.1.0
 	 */
-	public func setShrinkFactor(_ factor: Double) {
-		DisplayNodeSetShrinkFactor(self.handle, factor)
+	public func setShrinkRatio(_ ratio: Double) {
+		DisplayNodeSetShrinkRatio(self.handle, ratio)
 	}
 
 	/**
@@ -1893,12 +1885,12 @@ open class DisplayNode {
 	}
 
 	/**
-	 * @method didResolveOrigin
+	 * @method didResolvePosition
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	internal func didResolveOrigin() {
-		self.delegate?.didResolveOrigin(node: self)
+	internal func didResolvePosition() {
+		self.delegate?.didResolvePosition(node: self)
 	}
 
 	/**
@@ -1918,23 +1910,32 @@ open class DisplayNode {
 	internal func didResolveContentSize() {
 		self.delegate?.didResolveContentSize(node: self)
 	}
-
+	
 	/**
-	 * @method didResolveMargins
+	 * @method didResolveContentPosition
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	internal func didResolveMargins() {
-		self.delegate?.didResolveMargins(node: self)
+	internal func didResolveContentPosition() {
+		self.delegate?.didResolveContentPosition(node: self)
 	}
 
 	/**
-	 * @method didResolveBorders
+	 * @method didResolveMargin
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	internal func didResolveBorders() {
-		self.delegate?.didResolveBorders(node: self)
+	internal func didResolveMargin() {
+		self.delegate?.didResolveMargin(node: self)
+	}
+
+	/**
+	 * @method didResolveBorder
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	internal func didResolveBorder() {
+		self.delegate?.didResolveBorder(node: self)
 	}
 
 	/**
@@ -2022,7 +2023,7 @@ private let displayNodeResolveSizeCallback: @convention(c) (DisplayNodeRef?) -> 
  */
 private let displayNodeResolveOriginCallback: @convention(c) (DisplayNodeRef?) -> Void = { ptr in
 	if let node = DisplayNodeGetData(ptr).value as? DisplayNode {
-		node.didResolveOrigin()
+		node.didResolvePosition()
 	}
 }
 
@@ -2049,24 +2050,35 @@ private let displayNodeResolveContentSizeCallback: @convention(c) (DisplayNodeRe
 }
 
 /**
- * @const displayNodeResolveMarginsCallback
+ * @const displayNodeResolveContentPositionCallback
  * @since 0.1.0
  * @hidden
  */
-private let displayNodeResolveMarginsCallback: @convention(c) (DisplayNodeRef?) -> Void = { ptr in
+private let displayNodeResolveContentPositionCallback: @convention(c) (DisplayNodeRef?) -> Void = { ptr in
 	if let node = DisplayNodeGetData(ptr).value as? DisplayNode {
-		node.didResolveMargins()
+		node.didResolveContentPosition()
 	}
 }
 
 /**
- * @const displayNodeResolveBordersCallback
+ * @const displayNodeResolveMarginCallback
  * @since 0.1.0
  * @hidden
  */
-private let displayNodeResolveBordersCallback: @convention(c) (DisplayNodeRef?) -> Void = { ptr in
+private let displayNodeResolveMarginCallback: @convention(c) (DisplayNodeRef?) -> Void = { ptr in
 	if let node = DisplayNodeGetData(ptr).value as? DisplayNode {
-		node.didResolveBorders()
+		node.didResolveMargin()
+	}
+}
+
+/**
+ * @const displayNodeResolveBorderCallback
+ * @since 0.1.0
+ * @hidden
+ */
+private let displayNodeResolveBorderCallback: @convention(c) (DisplayNodeRef?) -> Void = { ptr in
+	if let node = DisplayNodeGetData(ptr).value as? DisplayNode {
+		node.didResolveBorder()
 	}
 }
 
