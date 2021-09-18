@@ -11,6 +11,7 @@ public class DisplayNodeDelegateCounter : DisplayNodeDelegate {
 	public var resolvedOrigin: Int = 0
 	public var resolvedInnerSize: Int = 0
 	public var resolvedContentSize: Int = 0
+	public var resolvedContentPosition: Int = 0
 	public var resolvedMargin: Int = 0
 	public var resolvedBorder: Int = 0
 	public var resolvedPadding: Int = 0
@@ -25,7 +26,7 @@ public class DisplayNodeDelegateCounter : DisplayNodeDelegate {
 		self.resolvedSize += 1
 	}
 
-	open func didResolveOrigin(node: DisplayNode) {
+	open func didResolvePosition(node: DisplayNode) {
 		self.resolvedOrigin += 1
 	}
 
@@ -36,12 +37,16 @@ public class DisplayNodeDelegateCounter : DisplayNodeDelegate {
 	open func didResolveContentSize(node: DisplayNode) {
 		self.resolvedContentSize += 1
 	}
+	
+	open func didResolveContentPosition(node: DisplayNode) {
+		self.resolvedContentPosition += 1
+	}
 
-	open func didResolveMargins(node: DisplayNode) {
+	open func didResolveMargin(node: DisplayNode) {
 		self.resolvedMargin += 1
 	}
 
-	open func didResolveBorders(node: DisplayNode) {
+	open func didResolveBorder(node: DisplayNode) {
 		self.resolvedBorder += 1
 	}
 
