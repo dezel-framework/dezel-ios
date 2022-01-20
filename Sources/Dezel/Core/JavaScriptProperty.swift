@@ -283,11 +283,11 @@ public class JavaScriptProperty: NSObject {
 		self.currentValue = JavaScriptProperty.Null
 		
 		super.init()
-
+		
 		guard let values = ValueParse(string) else {
 			return
 		}
-
+	
 		self.initialize(values)
 
 		ValueListDelete(values)
@@ -690,7 +690,7 @@ public class JavaScriptProperty: NSObject {
 	 * @hidden
 	 */
 	internal func resetCurrentValue(_ value: JavaScriptPropertyValue) {
-		self.initialValue = value
+		self.currentValue = value
 	}
 
 	//--------------------------------------------------------------------------

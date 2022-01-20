@@ -229,7 +229,7 @@ open class ApplicationController: UIViewController, StylesheetDelegate {
 	 * @since 0.1.0
 	 */
 	override open func viewDidLoad() {
-        
+
 		self.view.isHidden = false
 		self.view.isOpaque = true
 		self.view.backgroundColor = UIColor.black

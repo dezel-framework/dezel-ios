@@ -1169,7 +1169,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 */
 	open func didPrepareLayout(node: DisplayNode) {
 		self.delegate?.didPrepareLayout(view: self)
-		self.callMethod("nativeOnLayout")
+		self.callMethod("nativeOnBeforeLayout")
 	}
 
 	/**
@@ -1179,6 +1179,7 @@ open class JavaScriptView: JavaScriptClass, DisplayNodeDelegate, ScrollableDeleg
 	 */
 	open func didResolveLayout(node: DisplayNode) {
 		self.delegate?.didResolveLayout(view: self)
+		self.callMethod("nativeOnLayout")
 	}
 
 	/**

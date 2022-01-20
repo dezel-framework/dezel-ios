@@ -277,28 +277,52 @@ open class JavaScriptPropertyValue {
 		if let value = self.value {
 			return value.toHandle(context)
 		}
+		
+		if (self.type == .composite) {
+			
+			/*
+			 * When attempting to return a composite value, we must create
+			 * a string that contains all his components.
+			 */
+			
+			if let composite = self as? JavaScriptPropertyCompositeValue {
+				
+				var result: String = ""
+				
+				for component in composite.values {
+					result.append(component.string)
+					result.append(" ")
+				}
 
-		if (self.unit == .none) {
-
-			switch (self.type) {
-
-				case .null:
-					self.value = context.Null
-				case .string:
-					self.value = context.createString(self.string)
-				case .number:
-					self.value = context.createNumber(self.number)
-				case .boolean:
-					self.value = context.createBoolean(self.boolean)
-
-				default:
-					break
+				result = result.trim()
+				
+				self.value = context.createString(result)
 			}
-
+			
 		} else {
+		
+			if (self.unit == .none) {
 
-			self.value = context.createString(self.string)
+				switch (self.type) {
 
+					case .null:
+						self.value = context.Null
+					case .string:
+						self.value = context.createString(self.string)
+					case .number:
+						self.value = context.createNumber(self.number)
+					case .boolean:
+						self.value = context.createBoolean(self.boolean)
+
+					default:
+						break
+				}
+
+			} else {
+
+				self.value = context.createString(self.string)
+
+			}
 		}
 
 		return self.value?.toHandle(context)

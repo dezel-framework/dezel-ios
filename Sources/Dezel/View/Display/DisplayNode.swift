@@ -312,7 +312,7 @@ open class DisplayNode {
     /**
      * Sets the display node's root.
      * @method setRoot
-     * @since 0.2.0
+     * @since 0.1.0
      */
     public func setRoot(_ root: DisplayNode?) {
         DisplayNodeSetRoot(self.handle, root?.handle)
@@ -321,7 +321,7 @@ open class DisplayNode {
     /**
      * Sets the display node's host.
      * @method setHost
-     * @since 0.2.0
+     * @since 0.1.0
      */
     public func setHost(_ host: DisplayNode?) {
         DisplayNodeSetHost(self.handle, host?.handle)

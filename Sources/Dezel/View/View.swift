@@ -294,6 +294,7 @@ open class View : UIScrollView, UIScrollViewDelegate, Scrollable {
 	//--------------------------------------------------------------------------
 
 	/**
+	 *
 	 * @constructor
 	 * @since 0.1.0
 	 * @hidden

@@ -126,7 +126,6 @@ open class JavaScriptGlobalModule : JavaScriptModule {
 	//--------------------------------------------------------------------------
 	// MARK: Function Callbacks
 	//--------------------------------------------------------------------------
-
     
     /**
      * @property importClass

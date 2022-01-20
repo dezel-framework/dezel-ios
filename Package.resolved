@@ -2,24 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "DezelCoreJS",
-        "repositoryURL": "https://github.com/dezel-framework/dezel-core-js.git",
-        "state": {
-          "branch": "master",
-          "revision": "fc78f52ef45f3a139ddfa5dedf908c0dbc7e8937",
-          "version": null
-        }
-      },
-      {
-        "package": "DezelCoreUI",
-        "repositoryURL": "https://github.com/dezel-framework/dezel-core-ui.git",
-        "state": {
-          "branch": "master",
-          "revision": "70b27853fa5e29637ed2603f95c8465344679b00",
-          "version": null
-        }
-      },
-      {
         "package": "LibCache",
         "repositoryURL": "https://github.com/dezel-framework/dezel-lib-cache.git",
         "state": {

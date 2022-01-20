@@ -198,7 +198,7 @@ open class JavaScriptApplication: JavaScriptClass {
 
 	/**
 	 * @method jsStaticFunction_register
-	 * @since 0.2.0
+	 * @since 0.1.0
 	 * @hidden
 	 */
 	@objc class func jsStaticFunction_register(callback: JavaScriptFunctionCallback) {

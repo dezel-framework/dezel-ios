@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
@@ -17,10 +17,12 @@ let package = Package(
     ],
 
 	dependencies: [
-		.package(url: "https://github.com/dezel-framework/dezel-lib-cache.git", .branch("master")),
-		.package(url: "https://github.com/dezel-framework/dezel-lib-websocket.git", .branch("master")),
-		.package(url: "https://github.com/dezel-framework/dezel-core-js.git", .branch("master")),
-		.package(url: "https://github.com/dezel-framework/dezel-core-ui.git", .branch("master"))
+		.package(name: "LibCache", url: "https://github.com/dezel-framework/dezel-lib-cache.git", .branch("master")),
+		.package(name: "LibWebSocket", url: "https://github.com/dezel-framework/dezel-lib-websocket.git", .branch("master")),
+		.package(name: "DezelCoreJS", path: "../dezel-core-js"),
+		.package(name: "DezelCoreUI", path: "../dezel-core-ui"),
+//		.package(name: "DezelCoreUI", url: "https://github.com/dezel-framework/dezel-core-ui.git", .branch("master"))
+//		.package(name: "DezelCoreJS", url: "https://github.com/dezel-framework/dezel-core-js.git", .branch("master")),
 	],
 
 	targets: [
@@ -40,7 +42,10 @@ let package = Package(
 				"DezelCoreJS",
 				"DezelCoreUI"
 			],
-			path: "Sources/Dezel"
+			path: "Sources/Dezel",
+			resources: [
+				.process("Test/TestRunner.js")
+			]
 		),
 
         .testTarget(

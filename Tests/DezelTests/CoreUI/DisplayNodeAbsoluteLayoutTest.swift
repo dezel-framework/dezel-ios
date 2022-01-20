@@ -1875,9 +1875,6 @@ func testNodeBorderInCW() {
         XCTAssertEqual(container.measuredLeft, 0)
         XCTAssertEqual(container.measuredWidth, 200 + (200 * 0.4) + (200 * 0.6))
         XCTAssertEqual(container.measuredHeight, 400 + (400 * 0.2) + (400 * 0.8))
-        print("TESTING FOR MEASURED BORDER")
-        
-        print("TESTING BORDERS \(container.measuredBorderTop) \(container.measuredBorderLeft) \(container.measuredBorderRight) \(container.measuredBorderBottom) ")
         
 		XCTAssertEqual(container.measuredBorderTop, 400 * 0.2)
 		XCTAssertEqual(container.measuredBorderLeft, 200 * 0.4)
